@@ -118,12 +118,22 @@ impl SpendKey {
 
         // Now we derive the child keys from the BIP44 path. There are up five levels
         // in the BIP44 path: purpose, coin type, account, change, and address index.
+        println!("PATHHHHH(hex): {:?}", path.path());
+        println!("seed_bytes(hex): {:?}", hex::encode(&seed_bytes));
+        
         let child_key = XPrv::derive_from_path(
             &seed_bytes[..],
             &path.path().parse().expect("valid BIP44 path"),
         )
         .expect("can derive child key");
         let child_key_bytes = child_key.to_bytes();
+        let chain_code_bytes = child_key.attrs();
+
+        println!("child_key.private_key: {:?}", hex::encode(child_key.private_key().to_bytes()));
+        println!("chain_code_bytes.chain_code (hex): {:?}", hex::encode(chain_code_bytes.chain_code));
+
+        println!("child_key.public_key: {:?}", hex::encode(child_key.public_key().to_bytes()));
+
 
         SpendKeyBytes(child_key_bytes).into()
     }

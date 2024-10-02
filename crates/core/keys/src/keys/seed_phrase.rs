@@ -79,6 +79,10 @@ impl SeedPhrase {
         Self::from_randomness(&randomness)
     }
 
+    pub fn from_words(words: Vec<String>) -> Self {
+        SeedPhrase(words)
+    }
+    
     /// Randomly generates a 12 word BIP39 [`SeedPhrase`].
     pub fn short_generate<R: RngCore + CryptoRng>(mut rng: R) -> Self {
         let mut randomness = [0u8; NUM_ENTROPY_BITS_SHORT / NUM_BITS_PER_BYTE];

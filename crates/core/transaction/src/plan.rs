@@ -406,6 +406,7 @@ impl DomainType for TransactionPlan {
 
 impl From<TransactionPlan> for pb::TransactionPlan {
     fn from(msg: TransactionPlan) -> Self {
+        println!("SABES QUE SI!!!!!!!!1");
         Self {
             actions: msg.actions.into_iter().map(Into::into).collect(),
             transaction_parameters: Some(msg.transaction_parameters.into()),
@@ -439,6 +440,8 @@ mod tests {
     use penumbra_asset::{asset, Value, STAKING_TOKEN_ASSET_ID};
     use penumbra_dex::{swap::SwapPlaintext, swap::SwapPlan, TradingPair};
     use penumbra_fee::Fee;
+    use crate::Transaction;
+
     use penumbra_keys::{
         keys::{Bip44Path, SeedPhrase, SpendKey},
         Address,
@@ -448,6 +451,7 @@ mod tests {
     use penumbra_tct as tct;
     use penumbra_txhash::EffectingData as _;
     use rand_core::OsRng;
+    use penumbra_proto::DomainType;
 
     use crate::{
         memo::MemoPlaintext,
@@ -462,11 +466,30 @@ mod tests {
     /// we compute the same auth hash for the plan and for the transaction.
     #[test]
     fn plan_effect_hash_matches_transaction_effect_hash() {
-        let rng = OsRng;
-        let seed_phrase = SeedPhrase::generate(rng);
+        // let rng = OsRng;
+        // let seed_phrase = SeedPhrase::generate(rng);
+        let words = vec![ 
+            "equip".to_string(), "will".to_string(), "roof".to_string(), "matter".to_string(),
+            "pink".to_string(), "blind".to_string(), "book".to_string(), "anxiety".to_string(),
+            "banner".to_string(), "elbow".to_string(), "sun".to_string(), "young".to_string(),
+        ];
+        // let words = vec![ "crane".to_string(), "ramp".to_string(), "core".to_string(), "feed".to_string(), "deliver".to_string(), "check".to_string(), "degree".to_string(), "smoke".to_string(), "trick".to_string(), "frown".to_string(), "excite".to_string(), "blouse".to_string(), "upon".to_string(), "pig".to_string(), "cluster".to_string(), "song".to_string(), "sheriff".to_string(), "shield".to_string(), "payment".to_string(), "become".to_string(), "crystal".to_string(), "boat".to_string(), "soccer".to_string(), "hurt".to_string()];
+        let seed_phrase = SeedPhrase::from_words(words);
+
+        println!("Seed phrase: {:?}", seed_phrase);
+        let path = Bip44Path::new(0);
+        println!("Path: {:?}", path);
         let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(0));
         let fvk = sk.full_viewing_key();
         let (addr, _dtk) = fvk.incoming().payment_address(0u32.into());
+
+        println!("sk: {:?}", sk);
+        println!("fvk: {:?}", fvk);
+        println!("addr: {:?}", addr);
+
+        println!("sk: {:?}", hex::encode(sk.encode_to_vec()));
+        println!("fvk: {:?}", hex::encode(fvk.encode_to_vec()));
+        println!("addr: {:?}", hex::encode(addr.encode_to_vec()));
 
         let mut sct = tct::Tree::new();
 
@@ -550,8 +573,6 @@ mod tests {
         // Sort actions within the transaction plan.
         plan.sort_actions();
 
-        println!("{}", serde_json::to_string_pretty(&plan).unwrap());
-
         let plan_effect_hash = plan.effect_hash(fvk).unwrap();
 
         let auth_data = plan.authorize(rng, &sk).unwrap();
@@ -567,7 +588,27 @@ mod tests {
                 })
                 .collect(),
         };
+        println!("SABES QUE SI!!!!!!!!0");
+        let hex_string = hex::encode(plan.clone().encode_to_vec());
+        println!("{:?}", hex_string);
+        println!("SABES QUE SI!!!!!!!!3");
+
+        println!("{}", serde_json::to_string_pretty(&plan).unwrap());
+        println!("SABES QUE SI!!!!!!!!4");
+
         let transaction = plan.build(fvk, &witness_data, &auth_data).unwrap();
+
+        // 1HUOmIAxf60dNHwu3gCHEYA/9/n0Z0oI9jJ47O9lCQ0zoq91QaaC3j4ePPW1Xuymjhjk6kx4pcfHLWsOgww0BA==
+        let ser: Vec<u8> = transaction.clone().into();
+        println!("ANDY: {}", hex::encode(&ser));
+
+        println!("transaction !!!!!! {}", serde_json::to_string_pretty(&transaction.clone().anchor).unwrap());
+        let anchor_bytes: Vec<u8> = transaction.clone().anchor.to_string().into();
+        println!("anchorBytes: {:?}", hex::encode(&anchor_bytes));
+
+        let action: Result<Transaction, _> = Transaction::try_from(ser);
+        println!("Action!!!!!!!!!!!!!!: {:?}", action);
+        
 
         let transaction_effect_hash = transaction.effect_hash();
 

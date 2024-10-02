@@ -1,7 +1,6 @@
 //! [Payment address][Address] facilities.
 
 use std::{
-    fmt::Display,
     io::{Cursor, Read, Write},
     sync::OnceLock,
 };
@@ -13,7 +12,6 @@ use f4jumble::{f4jumble, f4jumble_inv};
 use penumbra_proto::{penumbra::core::keys::v1 as pb, serializers::bech32str, DomainType};
 use rand::{CryptoRng, Rng};
 use serde::{Deserialize, Serialize};
-use sha2::{Digest, Sha256};
 
 mod r1cs;
 pub use r1cs::AddressVar;
@@ -216,49 +214,6 @@ impl Address {
             bech32str::Bech32,
         )
     }
-
-    /// Generate a Noble forwarding address.
-    pub fn noble_forwarding_address(&self, channel: &str) -> NobleForwardingAddress {
-        NobleForwardingAddress {
-            channel: channel.to_string(),
-            recipient: format!("{}", self),
-        }
-    }
-}
-
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct NobleForwardingAddress {
-    pub channel: String,
-    pub recipient: String,
-}
-
-impl NobleForwardingAddress {
-    pub fn bytes(&self) -> Vec<u8> {
-        // Based on https://github.com/noble-assets/forwarding/blob/main/x/forwarding/types/account.go#L17
-        let channel = self.channel.clone();
-        let recipient = self.recipient.clone();
-        let bz = format!("{channel}{recipient}").as_bytes().to_owned();
-        let th = Sha256::digest("forwarding".as_bytes());
-        let mut hasher = Sha256::new();
-        hasher.update(th);
-        hasher.update(bz);
-
-        // This constructs the account bytes for the Noble forwarding address
-        // Only use bytes 12 and on:
-        hasher.finalize()[12..].to_vec()
-    }
-}
-
-impl Display for NobleForwardingAddress {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        let addr_bytes = &self.bytes();
-
-        write!(
-            f,
-            "{}",
-            bech32str::encode(&addr_bytes, "noble", bech32str::Bech32)
-        )
-    }
 }
 
 impl DomainType for Address {
@@ -416,9 +371,18 @@ mod tests {
 
     #[test]
     fn test_address_encoding() {
-        let rng = OsRng;
-        let seed_phrase = SeedPhrase::generate(rng);
-        let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(0));
+        // let rng = OsRng;
+        // let seed_phrase = SeedPhrase::generate(rng);
+
+        let words = vec![ 
+            "equip".to_string(), "will".to_string(), "roof".to_string(), "matter".to_string(),
+            "pink".to_string(), "blind".to_string(), "book".to_string(), "anxiety".to_string(),
+            "banner".to_string(), "elbow".to_string(), "sun".to_string(), "young".to_string(),
+        ];
+        // let words = vec![ "crane".to_string(), "ramp".to_string(), "core".to_string(), "feed".to_string(), "deliver".to_string(), "check".to_string(), "degree".to_string(), "smoke".to_string(), "trick".to_string(), "frown".to_string(), "excite".to_string(), "blouse".to_string(), "upon".to_string(), "pig".to_string(), "cluster".to_string(), "song".to_string(), "sheriff".to_string(), "shield".to_string(), "payment".to_string(), "become".to_string(), "crystal".to_string(), "boat".to_string(), "soccer".to_string(), "hurt".to_string()];
+        let seed_phrase = SeedPhrase::from_words(words);
+
+        let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(1));
         let fvk = sk.full_viewing_key();
         let ivk = fvk.incoming();
         let (dest, _dtk_d) = ivk.payment_address(0u32.into());
@@ -443,6 +407,13 @@ mod tests {
         let addr2 = Address::decode(proto_addr.as_ref()).expect("can decode valid address");
         let addr3 = Address::decode(proto_addr_bech32m.as_ref()).expect("can decode valid address");
 
+
+        println!("address!!!!: {}", addr);
+        println!("fvk: {:?}", hex::encode(fvk.encode_to_vec()));
+        println!("address!!!!: {}", hex::encode(addr.encode_to_vec()));
+        println!("address2!!!!: {}", hex::encode(addr2.encode_to_vec()));
+        println!("address3!!!!: {}", hex::encode(addr3.encode_to_vec()));
+        
         assert_eq!(addr, dest);
         assert_eq!(addr2, dest);
         assert_eq!(addr3, dest);
@@ -451,9 +422,17 @@ mod tests {
 
     #[test]
     fn test_compat_encoding() {
-        let rng = OsRng;
-        let seed_phrase = SeedPhrase::generate(rng);
-        let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(0));
+        // let rng = OsRng;
+        // let seed_phrase = SeedPhrase::generate(rng);
+
+        let words = vec![ 
+            "equip".to_string(), "will".to_string(), "roof".to_string(), "matter".to_string(),
+            "pink".to_string(), "blind".to_string(), "book".to_string(), "anxiety".to_string(),
+            "banner".to_string(), "elbow".to_string(), "sun".to_string(), "young".to_string(),
+        ];
+        let seed_phrase = SeedPhrase::from_words(words);
+
+        let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(1));
         let fvk = sk.full_viewing_key();
         let ivk = fvk.incoming();
         let (dest, _dtk_d) = ivk.payment_address(0u32.into());
@@ -465,6 +444,11 @@ mod tests {
         let proto_addr = dest.encode_to_vec();
 
         let addr2 = Address::decode(proto_addr.as_ref()).expect("can decode valid address");
+
+        println!("address!!!!: {}", addr);
+        println!("fvk: {:?}", hex::encode(fvk.encode_to_vec()));
+        println!("address!!!!: {}", hex::encode(addr.encode_to_vec()));
+        println!("address2!!!!: {}", hex::encode(addr2.encode_to_vec()));
 
         assert_eq!(addr, dest);
         assert_eq!(addr2, dest);
@@ -500,3 +484,5 @@ mod tests {
         assert!(dtk_d1.to_bytes() != dtk_d2.to_bytes());
     }
 }
+
+

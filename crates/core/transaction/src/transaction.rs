@@ -725,3 +725,18 @@ impl From<&Transaction> for Vec<u8> {
         protobuf_serialized.encode_to_vec()
     }
 }
+
+#[cfg(test)]
+mod test_transaction {
+    use super::*;
+
+    #[test]
+    fn tx_blob() {
+        let mut tx = Transaction::default();
+        tx.anchor = tct::Tree::new().root();
+        println!("ANCHOR !!!!!! {:?}", tx.anchor);
+        println!("transaction !!!!!! {}", serde_json::to_string_pretty(&tx.clone()).unwrap());
+        let ser: Vec<u8> = tx.into();
+        println!("{}", hex::encode(&ser));
+    }
+}
