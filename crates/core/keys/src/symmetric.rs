@@ -73,10 +73,15 @@ impl PayloadKey {
         let cipher = ChaCha20Poly1305::new(&self.0);
         let nonce_bytes = kind.nonce();
         let nonce = Nonce::from_slice(&nonce_bytes);
+        // println!("nonce!!!!!: {:?}", nonce);
+        // println!("plaintext!!!!!!!: {:?}", plaintext);
 
-        cipher
+        let ciphertext = cipher
             .encrypt(nonce, plaintext.as_ref())
-            .expect("encryption succeeded")
+            .expect("encryption succeeded");
+        //println!("ciphertext: {:?}", ciphertext);
+        ciphertext
+        
     }
 
     /// Decrypt a note, memo, or memo key using the `PayloadKey`.

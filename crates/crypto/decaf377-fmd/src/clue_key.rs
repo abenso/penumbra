@@ -18,6 +18,8 @@ pub struct ClueKey(pub [u8; 32]);
 
 /// An expanded and validated clue key that can be used to create [`Clue`]s
 /// intended for the corresponding [`DetectionKey`](crate::DetectionKey).
+/// 
+#[derive(Clone, Debug)]
 pub struct ExpandedClueKey {
     root_pub: decaf377::Element,
     root_pub_enc: decaf377::Encoding,
@@ -43,7 +45,10 @@ impl ClueKey {
         loop {
             counter += 1;
             let ck_fq_incremented = Fq::from_le_bytes_mod_order(&self.0) + Fq::from(counter);
-            let ck = ClueKey(ck_fq_incremented.to_bytes());
+            let ck: ClueKey = ClueKey(ck_fq_incremented.to_bytes());
+            println!("counter: {:?}", counter);
+            println!("ck_fq_incremented: {:?}", ck_fq_incremented);
+            println!("ck: {:?}", ck);
             if let Ok(eck) = ck.expand() {
                 return eck;
             }
@@ -57,11 +62,16 @@ impl ExpandedClueKey {
         let root_pub = root_pub_enc
             .vartime_decompress()
             .map_err(|_| Error::InvalidAddress)?;
+        let subkeys = RefCell::new(Vec::new());
+
+        println!("root_pub: {:?}", root_pub);
+        println!("root_pub_enc: {:?}", root_pub_enc);
+        println!("subkeys: {:?}", subkeys);
 
         Ok(ExpandedClueKey {
             root_pub,
             root_pub_enc,
-            subkeys: RefCell::new(Vec::new()),
+            subkeys,
         })
     }
 
@@ -124,6 +134,9 @@ impl ExpandedClueKey {
             Fr::from_le_bytes_mod_order(hash.as_bytes())
         };
 
+        println!("r!!!!!!!!!!!!!! {:?}", r);
+        println!("z!!!!!!!!!!!!!! {:?}", z);
+
         let P = r * decaf377::Element::GENERATOR;
         let P_encoding = P.vartime_compress();
         let Q = z * decaf377::Element::GENERATOR;
@@ -133,20 +146,33 @@ impl ExpandedClueKey {
         let Xs = self.subkeys.borrow();
 
         for i in 0..precision_bits {
+            println!("Xs!!!!!!!!!!!!!! {:?}", Xs[i]);
             let rXi = (r * Xs[i]).vartime_compress();
+            println!("rXi!!!!!!!!!!!!!! {:?}", rXi.0);
             let key_i = hash::to_bit(&P_encoding.0, &rXi.0, &Q_encoding.0);
+            println!("key_i!!!!!!!!!!!!!! {:?}", key_i);
             let ctxt_i = key_i ^ 1u8;
+            println!("ctxt_i!!!!!!!!!!!!!! {:?}", ctxt_i);
             ctxts.set(i, ctxt_i != 0);
+            println!("ctxts!!!!!!!!!!!!!! {:?}", ctxts);
         }
 
+        println!("ctxts!!!!!!!!!!!!!! {:?}", ctxts);
+        println!("P_encoding!!!!!!!!!!!!!! {:?}", P_encoding.0);
+        println!("precision_bits!!!!!!!!!!!!!! {:?}", precision_bits as u8);
+
         let m = hash::to_scalar(&P_encoding.0, precision_bits as u8, ctxts.as_raw_slice());
+        println!("m!!!!!!!!!!!!!! {:?}", m);
+
         let y = (z - m) * r.inverse().expect("random element is nonzero");
+        println!("y!!!!!!!!!!!!!! {:?}", y);
 
         let mut buf = [0u8; 68];
         buf[0..32].copy_from_slice(&P_encoding.0[..]);
         buf[32..64].copy_from_slice(&y.to_bytes()[..]);
         buf[64] = precision_bits as u8;
         buf[65..68].copy_from_slice(ctxts.as_raw_slice());
+        println!("buf!!!!!!!!!!!!!! {:?}", buf);
 
         Ok(Clue(buf))
     }

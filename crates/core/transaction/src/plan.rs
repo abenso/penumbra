@@ -70,16 +70,52 @@ impl TransactionPlan {
         // complete `Action`s, we just need to construct the bodies of the
         // actions the transaction will have when constructed.
 
-        let mut state = blake2b_simd::Params::new()
-            .personal(b"PenumbraEfHs")
-            .to_state();
+        let mut stateNew = blake2b_simd::Params::new();
+        let mut personal = stateNew.personal(b"PenumbraEfHs");
+        let mut state = personal.to_state();
+        //println!("stateNew: {:?}", hex::encode(state.finalize().as_array()));
 
+        println!("parameters_hash before:");
         let parameters_hash = self.transaction_parameters.effect_hash();
+        println!("parameters_hash after: {:?}", hex::encode(parameters_hash.as_bytes()));
 
+        println!("memo_hash before:");
+        // println!("{:?}", self.memo);
+        // println!("{:?}", hex::encode(self.memo.clone().unwrap().encode_to_vec()));
         let memo_hash = match self.memo {
             Some(ref memo) => memo.memo()?.effect_hash(),
             None => EffectHash::default(),
         };
+        println!("memo_hash after: {:?}", hex::encode(memo_hash.as_bytes()));
+
+        println!("detection_data_hash before!!!!!!!!!!:");
+        // let detection_data: Option<DetectionDataPlan> = self.detection_data.clone();
+        // println!("detection_data {:?}", detection_data);
+        // //println!("detection_data hex {:?}", hex::encode(detection_data.clone().unwrap().encode_to_vec()));
+
+        // let detection_data_as_ref = detection_data.as_ref();
+        // println!("detection_data_as_ref {:?}", detection_data_as_ref);
+        // //println!("detection_data_as_ref hex {:?}", hex::encode(detection_data_as_ref.unwrap().encode_to_vec()));
+
+        // let detection_data_hash2 = if let Some(plan) = detection_data_as_ref {
+        //     println!("detection_data PLAN {:?}", plan);
+        //     println!("detection_data PLAN hex {:?} \n\n\n\n\n\n", hex::encode(plan.encode_to_vec()));
+
+        //     let detection_data = plan.detection_data();
+        //     println!("detection_data inside plan {:?}", detection_data);
+        //     println!("detection_data hex inside plan {:?}", hex::encode(detection_data.encode_to_vec()));
+        //     Some(detection_data.effect_hash())
+        // } else {
+        //     None
+        // };
+        // println!("detection_data_hash2 {:?}", detection_data_hash2);
+        // println!("detection_data_hash2 hex {:?}", hex::encode(detection_data_hash2.unwrap().encode_to_vec()));
+
+        // let detection_data_hash = detection_data_as_ref.map(|plan| plan.detection_data().effect_hash());
+        // println!("detection_data_hash {:?}", detection_data_hash);
+        // println!("detection_data_hash hex {:?}", hex::encode(detection_data_hash.unwrap().encode_to_vec()));
+        // let detection_data_hash_as_bytes = detection_data_hash.unwrap_or_default();
+        // println!("detection_data_hash_as_bytes {:?}", hex::encode(detection_data_hash_as_bytes));
 
         let detection_data_hash = self
             .detection_data
@@ -88,7 +124,7 @@ impl TransactionPlan {
             // If the detection data is not present, use the all-zero hash to
             // record its absence in the overall effect hash.
             .unwrap_or_default();
-
+        println!("detection_data_hash after: {:?} \n\n", hex::encode(detection_data_hash.as_bytes()));
         // Hash the fixed data of the transaction body.
         state.update(parameters_hash.as_bytes());
         state.update(memo_hash.as_bytes());
@@ -477,9 +513,9 @@ mod tests {
         let seed_phrase = SeedPhrase::from_words(words);
 
         println!("Seed phrase: {:?}", seed_phrase);
-        let path = Bip44Path::new(0);
+        let path = Bip44Path::new(1);
         println!("Path: {:?}", path);
-        let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(0));
+        let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(1));
         let fvk = sk.full_viewing_key();
         let (addr, _dtk) = fvk.incoming().payment_address(0u32.into());
 
@@ -542,6 +578,11 @@ mod tests {
         let mut rng = OsRng;
 
         let memo_plaintext = MemoPlaintext::new(Address::dummy(&mut rng), "".to_string()).unwrap();
+        let mut planEmpty: TransactionPlan = TransactionPlan::default();
+        println!("SABES QUE SI planEmpty!!!!!!!!0");
+        let hex_string_empty = hex::encode(planEmpty.clone().encode_to_vec());
+        println!("{:?}", hex_string_empty);
+
         let mut plan: TransactionPlan = TransactionPlan {
             // Put outputs first to check that the auth hash
             // computation is not affected by plan ordering.
@@ -556,8 +597,8 @@ mod tests {
                 )
                 .into(),
                 SpendPlan::new(&mut OsRng, note0, 0u64.into()).into(),
-                SpendPlan::new(&mut OsRng, note1, 1u64.into()).into(),
-                SwapPlan::new(&mut OsRng, swap_plaintext).into(),
+                // SpendPlan::new(&mut OsRng, note1, 1u64.into()).into(),
+                // SwapPlan::new(&mut OsRng, swap_plaintext).into(),
             ],
             transaction_parameters: TransactionParameters {
                 expiry_height: 0,
@@ -565,7 +606,7 @@ mod tests {
                 chain_id: "penumbra-test".to_string(),
             },
             detection_data: Some(DetectionDataPlan {
-                clue_plans: vec![CluePlan::new(&mut OsRng, addr, 1.try_into().unwrap())],
+                clue_plans: vec![CluePlan::new(&mut OsRng, addr.clone(), 3.try_into().unwrap()), CluePlan::new(&mut OsRng, addr.clone(), 2.try_into().unwrap())],
             }),
             memo: Some(MemoPlan::new(&mut OsRng, memo_plaintext.clone())),
         };
@@ -573,9 +614,25 @@ mod tests {
         // Sort actions within the transaction plan.
         plan.sort_actions();
 
+        println!("SABES QUE SI!!!!!!!!0");
+        let hex_string = hex::encode(plan.clone().encode_to_vec());
+        println!("{:?}", hex_string);
+
+        // println!("SABES QUE SI!!!!!!!!2");
+        // let hex_string_momo = hex::encode(plan.clone().memo.unwrap().encode_to_vec());
+        // println!("{:?}", hex_string_momo);
+        println!("SABES QUE SI!!!!!!!!3");
+
+        println!("{}", serde_json::to_string_pretty(&plan).unwrap());
+        println!("SABES QUE SI!!!!!!!!4");
+        
         let plan_effect_hash = plan.effect_hash(fvk).unwrap();
 
         let auth_data = plan.authorize(rng, &sk).unwrap();
+        // println!("auth_data: {:?}", auth_data);
+        // println!("auth_data: {:?}", hex::encode(auth_data.encode_to_vec()));
+
+        
         let witness_data = WitnessData {
             anchor: sct.root(),
             state_commitment_proofs: plan
@@ -588,26 +645,20 @@ mod tests {
                 })
                 .collect(),
         };
-        println!("SABES QUE SI!!!!!!!!0");
-        let hex_string = hex::encode(plan.clone().encode_to_vec());
-        println!("{:?}", hex_string);
-        println!("SABES QUE SI!!!!!!!!3");
 
-        println!("{}", serde_json::to_string_pretty(&plan).unwrap());
-        println!("SABES QUE SI!!!!!!!!4");
 
         let transaction = plan.build(fvk, &witness_data, &auth_data).unwrap();
 
         // 1HUOmIAxf60dNHwu3gCHEYA/9/n0Z0oI9jJ47O9lCQ0zoq91QaaC3j4ePPW1Xuymjhjk6kx4pcfHLWsOgww0BA==
         let ser: Vec<u8> = transaction.clone().into();
-        println!("ANDY: {}", hex::encode(&ser));
+        //println!("ANDY: {}", hex::encode(&ser));
 
-        println!("transaction !!!!!! {}", serde_json::to_string_pretty(&transaction.clone().anchor).unwrap());
+        //println!("transaction !!!!!! {}", serde_json::to_string_pretty(&transaction.clone().anchor).unwrap());
         let anchor_bytes: Vec<u8> = transaction.clone().anchor.to_string().into();
-        println!("anchorBytes: {:?}", hex::encode(&anchor_bytes));
+        //println!("anchorBytes: {:?}", hex::encode(&anchor_bytes));
 
         let action: Result<Transaction, _> = Transaction::try_from(ser);
-        println!("Action!!!!!!!!!!!!!!: {:?}", action);
+        //println!("Action!!!!!!!!!!!!!!: {:?}", action);
         
 
         let transaction_effect_hash = transaction.effect_hash();

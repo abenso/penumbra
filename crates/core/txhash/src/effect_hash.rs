@@ -31,6 +31,10 @@ impl EffectHash {
     /// the variable-length `TypeUrl` of the corresponding domain type as a
     /// personalization string.
     pub fn from_proto_effecting_data<M: Message + Name>(message: &M) -> EffectHash {
+        println!("type_url: {}", M::type_url());
+        println!("message: {:?}", message.encode_to_vec());
+        println!("message: {:?}", hex::encode(message.encode_to_vec()));
+
         let mut state = create_personalized_state(&M::type_url());
         state.update(&message.encode_to_vec());
 

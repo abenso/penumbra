@@ -115,6 +115,7 @@ impl MemoCiphertext {
     /// Encrypt a memo, returning its ciphertext.
     pub fn encrypt(memo_key: PayloadKey, memo: &MemoPlaintext) -> anyhow::Result<MemoCiphertext> {
         let memo_bytes: Vec<u8> = memo.into();
+        //println!("\nmemo_bytes!!!!!!!!!!!!!!: {:?}\n", hex::encode(&memo_bytes));
         let memo_len = memo_bytes.len();
         if memo_len > MEMO_LEN_BYTES {
             anyhow::bail!(

@@ -16,6 +16,8 @@ impl MemoPlan {
     /// Create a new [`MemoPlan`].
     pub fn new<R: CryptoRng + RngCore>(rng: &mut R, plaintext: MemoPlaintext) -> MemoPlan {
         let key = PayloadKey::random_key(rng);
+        //println!("key!!!!!!!!!!!!!!: {:?}", key);
+        //println!("key!!!!!!!!!!!!!!: {:?}", hex::encode(key.to_vec()));
         MemoPlan { plaintext, key }
     }
 

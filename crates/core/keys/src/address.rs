@@ -318,8 +318,10 @@ impl TryFrom<&[u8]> for Address {
             anyhow::bail!("address malformed");
         }
 
+        //println!("jumbled_bytes: {:?}", jumbled_bytes.clone());
         let unjumbled_bytes =
             f4jumble_inv(jumbled_bytes).ok_or_else(|| anyhow::anyhow!("invalid address"))?;
+        //println!("unjumbled_bytes: {:?}", unjumbled_bytes.clone());
         let mut bytes = Cursor::new(unjumbled_bytes);
 
         let mut diversifier_bytes = [0u8; 16];
@@ -456,15 +458,32 @@ mod tests {
 
     #[test]
     fn test_bytes_roundtrip() {
-        let rng = OsRng;
-        let seed_phrase = SeedPhrase::generate(rng);
+        // let rng = OsRng;
+        // let seed_phrase = SeedPhrase::generate(rng);
+
+        let words = vec![ 
+            "equip".to_string(), "will".to_string(), "roof".to_string(), "matter".to_string(),
+            "pink".to_string(), "blind".to_string(), "book".to_string(), "anxiety".to_string(),
+            "banner".to_string(), "elbow".to_string(), "sun".to_string(), "young".to_string(),
+        ];
+        let seed_phrase = SeedPhrase::from_words(words);
+
         let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(0));
         let fvk = sk.full_viewing_key();
         let ivk = fvk.incoming();
         let (dest, _dtk_d) = ivk.payment_address(0u32.into());
 
-        let bytes = dest.to_vec();
-        let addr: Address = bytes.try_into().expect("can decode valid address");
+        //let bytes = dest.to_vec();
+        let bytes2: Vec<u8> = hex::decode("e0783360338067fc2ba548f460b3f06f33d3e756ebefa8a8c08c5e12a1e667df228df0720fb9bd963894183bc447e1c7ef591fa9625d4a66b7703eec2ec1ef543454673bb61a4f2a3d861114d6891d69").expect("can decode hex string");
+        println!("bytes: {:?}", hex::encode(bytes2.clone()));
+
+        let addr: Address = bytes2.try_into().expect("can decode valid address");
+
+        println!("addr.to_vec(): {:?}", hex::encode(addr.to_vec()));
+
+        println!("address!!!!: {}", addr);
+        println!("fvk: {:?}", hex::encode(fvk.encode_to_vec()));
+        println!("address!!!!: {}", hex::encode(addr.encode_to_vec()));
 
         assert_eq!(addr, dest);
     }

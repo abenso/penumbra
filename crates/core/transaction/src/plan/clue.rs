@@ -30,7 +30,11 @@ impl CluePlan {
     /// Create a [`Clue`] from the [`CluePlan`].
     pub fn clue(&self) -> Clue {
         let clue_key = self.address.clue_key();
+        println!("clue_key {:?}", clue_key);
+        println!("clue_key hex {:?}", hex::encode(clue_key.0));
         let expanded_clue_key = clue_key.expand_infallible();
+        println!("expanded_clue_key {:?}", expanded_clue_key);
+
         expanded_clue_key
             .create_clue_deterministic(self.precision, self.rseed)
             .expect("can construct clue key")
@@ -43,6 +47,8 @@ impl DomainType for CluePlan {
 
 impl From<CluePlan> for pb::CluePlan {
     fn from(msg: CluePlan) -> Self {
+        println!("msg.address CluePlan {:?}", msg.address);
+        println!("msg.address hex CluePlan {:?}", hex::encode(msg.address.to_vec()));
         Self {
             address: Some(msg.address.into()),
             rseed: msg.rseed.to_vec(),
