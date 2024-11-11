@@ -533,7 +533,7 @@ mod tests {
             &mut OsRng,
             &addr,
             Value {
-                amount: 10000u64.into(),
+                amount: 10005u64.into(),
                 asset_id: *STAKING_TOKEN_ASSET_ID,
             },
         );
@@ -597,8 +597,8 @@ mod tests {
                 )
                 .into(),
                 SpendPlan::new(&mut OsRng, note0, 0u64.into()).into(),
-                // SpendPlan::new(&mut OsRng, note1, 1u64.into()).into(),
-                // SwapPlan::new(&mut OsRng, swap_plaintext).into(),
+                SpendPlan::new(&mut OsRng, note1, 1u64.into()).into(),
+                SwapPlan::new(&mut OsRng, swap_plaintext).into(),
             ],
             transaction_parameters: TransactionParameters {
                 expiry_height: 0,
@@ -625,6 +625,10 @@ mod tests {
 
         println!("{}", serde_json::to_string_pretty(&plan).unwrap());
         println!("SABES QUE SI!!!!!!!!4");
+
+        for (i, action) in plan.actions.iter().enumerate() {
+            println!("Action {} endoded: {:?}", i, hex::encode(action.clone().encode_to_vec()));
+        }
         
         let plan_effect_hash = plan.effect_hash(fvk).unwrap();
 
