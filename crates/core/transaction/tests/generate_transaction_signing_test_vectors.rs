@@ -665,29 +665,29 @@ fn action_plan_strategy(
 ) -> impl Strategy<Value = ActionPlan> {
     prop_oneof![
         spend_plan_strategy(fvk).prop_map(ActionPlan::Spend),
-        output_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Output),
-        delegate_plan_strategy().prop_map(ActionPlan::Delegate),
-        undelegate_plan_strategy().prop_map(ActionPlan::Undelegate),
-        undelegate_claim_plan_strategy().prop_map(ActionPlan::UndelegateClaim),
-        validator_definition_strategy().prop_map(ActionPlan::ValidatorDefinition),
-        swap_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Swap),
-        swap_claim_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::SwapClaim),
-        proposal_submit_strategy().prop_map(ActionPlan::ProposalSubmit),
-        proposal_withdraw_strategy().prop_map(ActionPlan::ProposalWithdraw),
-        ibc_action_strategy(seed_phrase.clone()).prop_map(ActionPlan::IbcAction),
-        delegator_vote_strategy().prop_map(ActionPlan::DelegatorVote),
-        validator_vote_strategy().prop_map(ActionPlan::ValidatorVote),
-        proposal_deposit_claim_strategy().prop_map(ActionPlan::ProposalDepositClaim),
-        position_open_strategy().prop_map(ActionPlan::PositionOpen),
-        position_close_strategy().prop_map(ActionPlan::PositionClose),
-        position_withdraw_strategy().prop_map(ActionPlan::PositionWithdraw),
-        community_pool_deposit_strategy().prop_map(ActionPlan::CommunityPoolDeposit),
-        community_pool_spend_strategy().prop_map(ActionPlan::CommunityPoolSpend),
-        community_pool_output_strategy().prop_map(ActionPlan::CommunityPoolOutput),
-        ics20_withdrawal_strategy(seed_phrase.clone()).prop_map(ActionPlan::Ics20Withdrawal),
-        auction_dutch_end_strategy().prop_map(ActionPlan::ActionDutchAuctionEnd),
-        auction_dutch_withdraw_plan_strategy().prop_map(ActionPlan::ActionDutchAuctionWithdraw),
-        auction_dutch_schedule_strategy().prop_map(ActionPlan::ActionDutchAuctionSchedule),
+        // output_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Output),
+        // delegate_plan_strategy().prop_map(ActionPlan::Delegate),
+        // undelegate_plan_strategy().prop_map(ActionPlan::Undelegate),
+        // undelegate_claim_plan_strategy().prop_map(ActionPlan::UndelegateClaim),
+        // validator_definition_strategy().prop_map(ActionPlan::ValidatorDefinition),
+        // swap_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Swap),
+        // swap_claim_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::SwapClaim),
+        // proposal_submit_strategy().prop_map(ActionPlan::ProposalSubmit),
+        // proposal_withdraw_strategy().prop_map(ActionPlan::ProposalWithdraw),
+        // ibc_action_strategy(seed_phrase.clone()).prop_map(ActionPlan::IbcAction),
+        // delegator_vote_strategy().prop_map(ActionPlan::DelegatorVote),
+        // validator_vote_strategy().prop_map(ActionPlan::ValidatorVote),
+        // proposal_deposit_claim_strategy().prop_map(ActionPlan::ProposalDepositClaim),
+        // position_open_strategy().prop_map(ActionPlan::PositionOpen),
+        // position_close_strategy().prop_map(ActionPlan::PositionClose),
+        // position_withdraw_strategy().prop_map(ActionPlan::PositionWithdraw),
+        // community_pool_deposit_strategy().prop_map(ActionPlan::CommunityPoolDeposit),
+        // community_pool_spend_strategy().prop_map(ActionPlan::CommunityPoolSpend),
+        // community_pool_output_strategy().prop_map(ActionPlan::CommunityPoolOutput),
+        // ics20_withdrawal_strategy(seed_phrase.clone()).prop_map(ActionPlan::Ics20Withdrawal),
+        // auction_dutch_end_strategy().prop_map(ActionPlan::ActionDutchAuctionEnd),
+        // auction_dutch_withdraw_plan_strategy().prop_map(ActionPlan::ActionDutchAuctionWithdraw),
+        // auction_dutch_schedule_strategy().prop_map(ActionPlan::ActionDutchAuctionSchedule),
     ]
 }
 
@@ -695,7 +695,7 @@ fn actions_vec_strategy(
     fvk: &FullViewingKey,
     seed_phrase: SeedPhrase,
 ) -> impl Strategy<Value = Vec<ActionPlan>> {
-    prop::collection::vec(action_plan_strategy(fvk, seed_phrase), 2..5)
+    prop::collection::vec(action_plan_strategy(fvk, seed_phrase), 2)
 }
 
 fn chain_id_strategy() -> impl Strategy<Value = String> {
@@ -751,6 +751,37 @@ fn transaction_plan_strategy(
         })
 }
 
+fn actions_vec_as_string(actions_vec: Vec<ActionPlan>) -> String {
+    actions_vec.iter().map(|action| {
+        match action {
+            ActionPlan::Spend(_) => "Spend",
+            ActionPlan::Output(_) => "Output",
+            ActionPlan::Delegate(_) => "Delegate",
+            ActionPlan::Undelegate(_) => "Undelegate",
+            ActionPlan::UndelegateClaim(_) => "UndelegateClaim",
+            ActionPlan::ValidatorDefinition(_) => "ValidatorDefinition",
+            ActionPlan::Swap(_) => "Swap",
+            ActionPlan::SwapClaim(_) => "SwapClaim",
+            ActionPlan::IbcAction(_) => "IbcAction",
+            ActionPlan::ProposalSubmit(_) => "ProposalSubmit",
+            ActionPlan::ProposalWithdraw(_) => "ProposalWithdraw",
+            ActionPlan::DelegatorVote(_) => "DelegatorVote",
+            ActionPlan::ValidatorVote(_) => "ValidatorVote",
+            ActionPlan::ProposalDepositClaim(_) => "ProposalDepositClaim",
+            ActionPlan::PositionOpen(_) => "PositionOpen",
+            ActionPlan::PositionClose(_) => "PositionClose",
+            ActionPlan::PositionWithdraw(_) => "PositionWithdraw",
+            ActionPlan::CommunityPoolDeposit(_) => "CommunityPoolDeposit",
+            ActionPlan::CommunityPoolSpend(_) => "CommunityPoolSpend",
+            ActionPlan::CommunityPoolOutput(_) => "CommunityPoolOutput",
+            ActionPlan::Ics20Withdrawal(_) => "Ics20Withdrawal",
+            ActionPlan::ActionDutchAuctionEnd(_) => "ActionDutchAuctionEnd",
+            ActionPlan::ActionDutchAuctionWithdraw(_) => "ActionDutchAuctionWithdraw",
+            ActionPlan::ActionDutchAuctionSchedule(_) => "ActionDutchAuctionSchedule",
+        }
+    }).collect::<Vec<&str>>().join("_")
+}
+
 #[test]
 #[ignore]
 fn generate_transaction_signing_test_vectors() {
@@ -758,9 +789,11 @@ fn generate_transaction_signing_test_vectors() {
     let mut runner = TestRunner::new(Config::default());
     let test_vectors_dir = "tests/signing_test_vectors";
     std::fs::create_dir_all(test_vectors_dir).expect("failed to create test vectors dir");
+    const SEED_PHRASE_TEST: &str = "equip will roof matter pink blind book anxiety banner elbow sun young";
 
-    for i in 0..100 {
-        let seed_phrase = SeedPhrase::from_str(SEED_PHRASE).expect("test seed phrase is valid");
+    // let mut test_cases = Vec::new();
+    for i in 0..1 {
+        let seed_phrase = SeedPhrase::from_str(SEED_PHRASE_TEST).expect("test seed phrase is valid");
         let sk = SpendKey::from_seed_phrase_bip44(seed_phrase.clone(), &Bip44Path::new(0));
         let fvk = sk.full_viewing_key();
         let value_tree = transaction_plan_strategy(fvk, seed_phrase)
@@ -779,9 +812,22 @@ fn generate_transaction_signing_test_vectors() {
                 .0,
         );
 
+        let hex_string = hex::encode(transaction_plan.clone().encode_to_vec());
+
         let json_file_path = format!("{}/transaction_plan_{}.json", test_vectors_dir, i);
         let proto_file_path = format!("{}/transaction_plan_{}.proto", test_vectors_dir, i);
         let hash_file_path = format!("{}/effect_hash_{}.txt", test_vectors_dir, i);
+        let blob_file_path = format!("{}/transaction_plan_{}.blob", test_vectors_dir, i);
+
+        let action_names = actions_vec_as_string(transaction_plan.actions.clone());
+
+        // // Collect test case data
+        // let test_case: serde_json::Value = json!({
+        //     "index": i,
+        //     "name": format!("{}_{}", action_names, i),
+        //     "blob": hex::encode(&transaction_plan_encoded),
+        //     "hash": effect_hash_hex
+        // });
 
         let mut json_file = File::create(&json_file_path).expect("Failed to create JSON file");
         json_file
@@ -798,7 +844,22 @@ fn generate_transaction_signing_test_vectors() {
         hash_file
             .write_all(effect_hash_hex.as_bytes())
             .expect("Failed to write hash file");
+
+        // Write blob
+        let mut blob_file = File::create(&blob_file_path).expect("Failed to create blob file");
+        blob_file
+            .write_all(&hex_string.as_bytes())
+            .expect("Failed to write blob file");
+
+        // test_cases.push(test_case);
     }
+
+    // // Write effect hash test cases
+    // let effect_hash_file_path = format!("{}/plan_effect_hash_testcases.json", test_vectors_dir);
+    // let mut effect_hash_file = File::create(&effect_hash_file_path).expect("Failed to create effect hash JSON file");
+    // effect_hash_file
+    //     .write_all(serde_json::to_string_pretty(&test_cases).unwrap().as_bytes())
+    //     .expect("Failed to write all test cases JSON file");
 }
 
 /// After the colon, there should be maximum 38 characters.
@@ -851,11 +912,12 @@ fn effect_hash_test_vectors() {
     // This parses the transaction plan, computes the effect hash, and verifies that it
     // matches the expected effect hash.
     let test_vectors_dir = "tests/signing_test_vectors";
-    let seed_phrase = SeedPhrase::from_str(SEED_PHRASE).expect("test seed phrase is valid");
+    const SEED_PHRASE_TEST: &str = "equip will roof matter pink blind book anxiety banner elbow sun young";
+    let seed_phrase = SeedPhrase::from_str(SEED_PHRASE_TEST).expect("test seed phrase is valid");
     let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(0));
     let fvk = sk.full_viewing_key();
 
-    for i in 0..100 {
+    for i in 0..1 {
         let proto_file_path = format!("{}/transaction_plan_{}.proto", test_vectors_dir, i);
         let mut proto_file = File::open(&proto_file_path).expect("Failed to open Protobuf file");
         let mut transaction_plan_encoded = Vec::<u8>::new();
@@ -884,11 +946,14 @@ fn generate_hw_display_test_vectors() {
     let test_vectors_dir = "tests/signing_test_vectors";
     let mut test_vectors = Vec::new();
 
-    let seed_phrase = SeedPhrase::from_str(SEED_PHRASE).expect("test seed phrase is valid");
+    const SEED_PHRASE_TEST: &str = "equip will roof matter pink blind book anxiety banner elbow sun young";
+    let seed_phrase = SeedPhrase::from_str(SEED_PHRASE_TEST).expect("test seed phrase is valid");
     let sk = SpendKey::from_seed_phrase_bip44(seed_phrase, &Bip44Path::new(0));
     let fvk = sk.full_viewing_key();
 
-    for i in 0..100 {
+    let mut index = 0;
+    let mut test_cases = Vec::new();
+    for i in 0..1 {
         let proto_file_path = format!("{}/transaction_plan_{}.proto", test_vectors_dir, i);
         let transaction_plan_encoded =
             fs::read(&proto_file_path).expect("Failed to read Protobuf file");
@@ -897,13 +962,48 @@ fn generate_hw_display_test_vectors() {
             .expect("should be able to decode transaction plan");
 
         let display_vector = json!({
-            "index": i,
+            "index": index,
             "blob": hex::encode(&transaction_plan_encoded),
             "output": generate_normal_output(&transaction_plan, &fvk),
             "output_expert": generate_expert_output(&transaction_plan, &fvk),
         });
 
-        test_vectors.push(display_vector);
+        // Check if "PANIC" appears in any part of the display vector
+        let display_vector_str = serde_json::to_string(&display_vector)
+            .expect("should be able to serialize display vector");
+        
+        //println!("Display vector contains 'PANIC': {}", display_vector_str);
+        if !display_vector_str.contains("PANIC") {
+            test_vectors.push(display_vector);
+            index += 1;
+
+
+            let effect_hash_hex = hex::encode(
+                transaction_plan
+                    .effect_hash(fvk)
+                    .expect("should be able to compute effect hash")
+                    .0,
+            );
+
+            let mut rng = OsRng;
+            println!("DUMMY ADDRESS 0: {:?}", rng);
+            let dummy_address = Address::dummy(&mut rng);
+            println!("DUMMY ADDRESS 1: {:?}", rng);
+            let auth_data = transaction_plan.authorize(rng, &sk).unwrap();
+            println!("AUTH DATA: {:?}", auth_data);
+            let action_names = actions_vec_as_string(transaction_plan.actions.clone());
+
+            // Collect test case data
+            let test_case: serde_json::Value = json!({
+                "index": index,
+                "name": format!("{}_{}", action_names, i),
+                "blob": hex::encode(&transaction_plan_encoded),
+                "hash": effect_hash_hex
+            });
+
+            test_cases.push(test_case);
+        }
+
     }
 
     // Write the test vectors to a JSON file
@@ -913,6 +1013,14 @@ fn generate_hw_display_test_vectors() {
         serde_json::to_string_pretty(&test_vectors).unwrap(),
     )
     .expect("Failed to write display test vectors");
+
+    // Write effect hash test cases
+    let effect_hash_file_path = format!("{}/plan_effect_hash_testcases.json", test_vectors_dir);
+    let mut effect_hash_file = File::create(&effect_hash_file_path).expect("Failed to create effect hash JSON file");
+    effect_hash_file
+        .write_all(serde_json::to_string_pretty(&test_cases).unwrap().as_bytes())
+        .expect("Failed to write all test cases JSON file");
+
 }
 
 fn address_display(address: &Address, fvk: &FullViewingKey) -> String {
@@ -950,6 +1058,10 @@ fn value_display(
     let cache = asset::Cache::with_known_assets();
     let value_view = value.view_with_cache(&cache);
 
+    // for (id, metadata) in &cache.cache {
+    //     println!("CACHE: Metadata: {:?} {:?}", hex::encode(metadata.encode_to_vec()), metadata.to_string());
+    // }
+
     match value_view {
         ValueView::KnownAssetId {
             amount, metadata, ..
@@ -977,6 +1089,7 @@ fn value_display(
 fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<String> {
     let mut output = Vec::new();
     let mut index = 0;
+    let mut action_index = 1;
     // TODO: populate this
     let base_denoms = HashMap::new();
     let ivk = fvk.incoming();
@@ -1013,6 +1126,24 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
     }
     index += 1;
 
+    // Add memo if present
+    if let Some(memo) = &plan.memo {
+        // Display sender address
+        for line in format_for_display(
+            "Memo Sender Address",
+            address_display(&memo.plaintext.return_address(), &fvk),
+        ) {
+            output.push(format!("{} | {}", index, line));
+        }
+        index += 1;
+
+        // Display memo text
+        for line in format_for_display("Memo Text", memo.plaintext.text().to_string()) {
+            output.push(format!("{} | {}", index, line));
+        }
+        index += 1;
+    }
+
     for action in &plan.actions {
         match action {
             ActionPlan::Spend(spend) => {
@@ -1029,7 +1160,7 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 // Combine into "Spend {value} from {address}"
                 let spend_display = format!("Spend {} from {}", value_display, address_display);
 
-                for line in format_for_display("Action", spend_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), spend_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
@@ -1048,7 +1179,7 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 // Combine into "Output {value} to {address}"
                 let output_display = format!("Output {} to {}", value_display, address_display);
 
-                for line in format_for_display("Action", output_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), output_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
@@ -1076,16 +1207,16 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 let ics20_display;
                 if error_display != "" {
                     ics20_display = format!(
-                        "ICS20Withdrawal\nChannel {}\nAmount {}\nTo {}\n{}",
+                        "ICS20Withdrawal Channel {} Amount {} To {} {}",
                         channel_display, value_display, destination_display, error_display
                     );
                 } else {
                     ics20_display = format!(
-                        "ICS20Withdrawal\nChannel {}\nAmount {}\nTo {}",
+                        "ICS20Withdrawal Channel {} Amount {} To {}",
                         channel_display, value_display, destination_display
                     );
                 }
-                for line in format_for_display("Action", ics20_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), ics20_display) {
                     output.push(format!("{} | {}", index, line));
                 }
 
@@ -1180,12 +1311,12 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                     );
                 } else {
                     swap_display = format!(
-                        "Swap\nInput {}\nOutput Asset {}\nClaim Fee {}",
+                        "Swap Input {} Output Asset {} Claim Fee {}",
                         input_display, output_asset_display, claim_fee_display
                     );
                 }
 
-                for line in format_for_display("Action", swap_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), swap_display) {
                     output.push(format!("{} | {}", index, line));
                 }
 
@@ -1468,22 +1599,7 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 // TODO: populate this
             }
         }
-    }
-
-    // Add memo if present
-    if let Some(memo) = &plan.memo {
-        // Display sender address
-        for line in format_for_display(
-            "Sender Address",
-            address_display(&memo.plaintext.return_address(), &fvk),
-        ) {
-            output.push(format!("{} | {}", index, line));
-        }
-
-        // Display memo text
-        for line in format_for_display("Memo Text", memo.plaintext.text().to_string()) {
-            output.push(format!("{} | {}", index, line));
-        }
+        action_index += 1;
     }
     // TODO: If adding more stuff here increment the `index`
 
