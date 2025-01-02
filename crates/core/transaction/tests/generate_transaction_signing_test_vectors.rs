@@ -49,7 +49,7 @@ use penumbra_stake::{
     Penalty, Undelegate, UndelegateClaimPlan,
 };
 use penumbra_transaction::{
-    memo::MemoPlaintext, plan::MemoPlan, ActionPlan, TransactionParameters, TransactionPlan,
+    memo::MemoPlaintext, plan::MemoPlan, ActionPlan, TransactionParameters, TransactionPlan, WitnessData
 };
 use proptest::prelude::*;
 use proptest::strategy::ValueTree;
@@ -61,6 +61,16 @@ use std::io::Write;
 use std::str::FromStr;
 use std::{fs, fs::File, io::Read};
 use tendermint;
+use penumbra_tct as tct;
+use std::sync::Mutex;
+
+#[macro_use]
+extern crate lazy_static;
+
+// Declare sct as a global variable
+lazy_static! {
+    static ref SCT: Mutex<tct::Tree> = Mutex::new(tct::Tree::new());
+}
 
 fn amount_strategy() -> impl Strategy<Value = Amount> {
     let inner_uint_range = 0u128..1_000_000_000_000_000_000u128;
@@ -665,12 +675,12 @@ fn action_plan_strategy(
 ) -> impl Strategy<Value = ActionPlan> {
     prop_oneof![
         spend_plan_strategy(fvk).prop_map(ActionPlan::Spend),
-        // output_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Output),
-        // delegate_plan_strategy().prop_map(ActionPlan::Delegate),
-        // undelegate_plan_strategy().prop_map(ActionPlan::Undelegate),
+        output_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Output),
+        delegate_plan_strategy().prop_map(ActionPlan::Delegate),
+        undelegate_plan_strategy().prop_map(ActionPlan::Undelegate),
         // undelegate_claim_plan_strategy().prop_map(ActionPlan::UndelegateClaim),
         // validator_definition_strategy().prop_map(ActionPlan::ValidatorDefinition),
-        // swap_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Swap),
+        swap_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Swap),
         // swap_claim_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::SwapClaim),
         // proposal_submit_strategy().prop_map(ActionPlan::ProposalSubmit),
         // proposal_withdraw_strategy().prop_map(ActionPlan::ProposalWithdraw),
@@ -684,7 +694,7 @@ fn action_plan_strategy(
         // community_pool_deposit_strategy().prop_map(ActionPlan::CommunityPoolDeposit),
         // community_pool_spend_strategy().prop_map(ActionPlan::CommunityPoolSpend),
         // community_pool_output_strategy().prop_map(ActionPlan::CommunityPoolOutput),
-        // ics20_withdrawal_strategy(seed_phrase.clone()).prop_map(ActionPlan::Ics20Withdrawal),
+        ics20_withdrawal_strategy(seed_phrase.clone()).prop_map(ActionPlan::Ics20Withdrawal),
         // auction_dutch_end_strategy().prop_map(ActionPlan::ActionDutchAuctionEnd),
         // auction_dutch_withdraw_plan_strategy().prop_map(ActionPlan::ActionDutchAuctionWithdraw),
         // auction_dutch_schedule_strategy().prop_map(ActionPlan::ActionDutchAuctionSchedule),
@@ -695,7 +705,7 @@ fn actions_vec_strategy(
     fvk: &FullViewingKey,
     seed_phrase: SeedPhrase,
 ) -> impl Strategy<Value = Vec<ActionPlan>> {
-    prop::collection::vec(action_plan_strategy(fvk, seed_phrase), 2)
+    prop::collection::vec(action_plan_strategy(fvk, seed_phrase), 2..5)
 }
 
 fn chain_id_strategy() -> impl Strategy<Value = String> {
@@ -792,7 +802,7 @@ fn generate_transaction_signing_test_vectors() {
     const SEED_PHRASE_TEST: &str = "equip will roof matter pink blind book anxiety banner elbow sun young";
 
     // let mut test_cases = Vec::new();
-    for i in 0..1 {
+    for i in 0..100 {
         let seed_phrase = SeedPhrase::from_str(SEED_PHRASE_TEST).expect("test seed phrase is valid");
         let sk = SpendKey::from_seed_phrase_bip44(seed_phrase.clone(), &Bip44Path::new(0));
         let fvk = sk.full_viewing_key();
@@ -953,7 +963,7 @@ fn generate_hw_display_test_vectors() {
 
     let mut index = 0;
     let mut test_cases = Vec::new();
-    for i in 0..1 {
+    for i in 0..50 {
         let proto_file_path = format!("{}/transaction_plan_{}.proto", test_vectors_dir, i);
         let transaction_plan_encoded =
             fs::read(&proto_file_path).expect("Failed to read Protobuf file");
@@ -1338,11 +1348,11 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 let validator_display = format!("{}", delegate.validator_identity);
 
                 let delegate_display = format!(
-                    "Delegate\nTo {}\nInput {}",
+                    "Delegate To {} Input {}",
                     validator_display, input_display
                 );
 
-                for line in format_for_display("Action", delegate_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), delegate_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
@@ -1368,11 +1378,11 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 let validator_display = format!("{}", undelegate.validator_identity);
 
                 let undelegate_display = format!(
-                    "Undelegate\nFrom {}\nInput {}\nOutput {}",
+                    "Undelegate From {} Input {} Output {}",
                     validator_display, input_display, output_display
                 );
 
-                for line in format_for_display("Action", undelegate_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), undelegate_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
