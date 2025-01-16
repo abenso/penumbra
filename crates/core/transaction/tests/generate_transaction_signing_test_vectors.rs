@@ -64,14 +64,6 @@ use tendermint;
 use penumbra_tct as tct;
 use std::sync::Mutex;
 
-#[macro_use]
-extern crate lazy_static;
-
-// Declare sct as a global variable
-lazy_static! {
-    static ref SCT: Mutex<tct::Tree> = Mutex::new(tct::Tree::new());
-}
-
 fn amount_strategy() -> impl Strategy<Value = Amount> {
     let inner_uint_range = 0u128..1_000_000_000_000_000_000u128;
     inner_uint_range.prop_map(|uint| Amount::from_le_bytes(uint.to_le_bytes()))
@@ -458,10 +450,10 @@ fn delegator_vote_strategy() -> impl Strategy<Value = DelegatorVotePlan> {
             |(proposal, vote, unbonded_amount, staked_note)| DelegatorVotePlan {
                 proposal,
                 vote,
-                start_position: penumbra_tct::Position::from(0u64),
+                start_position: penumbra_tct::Position::from(rand::random::<u64>() % 100001),
                 staked_note,
                 unbonded_amount,
-                position: penumbra_tct::Position::from(0u64),
+                position: penumbra_tct::Position::from(rand::random::<u64>() % 100001),
                 randomizer: Fr::rand(&mut OsRng),
                 proof_blinding_r: Fq::rand(&mut OsRng),
                 proof_blinding_s: Fq::rand(&mut OsRng),
@@ -676,16 +668,18 @@ fn action_plan_strategy(
     prop_oneof![
         spend_plan_strategy(fvk).prop_map(ActionPlan::Spend),
         output_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Output),
+        // swap_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Swap),
+        ics20_withdrawal_strategy(seed_phrase.clone()).prop_map(ActionPlan::Ics20Withdrawal),
         delegate_plan_strategy().prop_map(ActionPlan::Delegate),
         undelegate_plan_strategy().prop_map(ActionPlan::Undelegate),
-        // undelegate_claim_plan_strategy().prop_map(ActionPlan::UndelegateClaim),
+        undelegate_claim_plan_strategy().prop_map(ActionPlan::UndelegateClaim),
+        delegator_vote_strategy().prop_map(ActionPlan::DelegatorVote),
+
         // validator_definition_strategy().prop_map(ActionPlan::ValidatorDefinition),
-        swap_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Swap),
         // swap_claim_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::SwapClaim),
         // proposal_submit_strategy().prop_map(ActionPlan::ProposalSubmit),
         // proposal_withdraw_strategy().prop_map(ActionPlan::ProposalWithdraw),
         // ibc_action_strategy(seed_phrase.clone()).prop_map(ActionPlan::IbcAction),
-        // delegator_vote_strategy().prop_map(ActionPlan::DelegatorVote),
         // validator_vote_strategy().prop_map(ActionPlan::ValidatorVote),
         // proposal_deposit_claim_strategy().prop_map(ActionPlan::ProposalDepositClaim),
         // position_open_strategy().prop_map(ActionPlan::PositionOpen),
@@ -694,7 +688,6 @@ fn action_plan_strategy(
         // community_pool_deposit_strategy().prop_map(ActionPlan::CommunityPoolDeposit),
         // community_pool_spend_strategy().prop_map(ActionPlan::CommunityPoolSpend),
         // community_pool_output_strategy().prop_map(ActionPlan::CommunityPoolOutput),
-        ics20_withdrawal_strategy(seed_phrase.clone()).prop_map(ActionPlan::Ics20Withdrawal),
         // auction_dutch_end_strategy().prop_map(ActionPlan::ActionDutchAuctionEnd),
         // auction_dutch_withdraw_plan_strategy().prop_map(ActionPlan::ActionDutchAuctionWithdraw),
         // auction_dutch_schedule_strategy().prop_map(ActionPlan::ActionDutchAuctionSchedule),
@@ -705,7 +698,7 @@ fn actions_vec_strategy(
     fvk: &FullViewingKey,
     seed_phrase: SeedPhrase,
 ) -> impl Strategy<Value = Vec<ActionPlan>> {
-    prop::collection::vec(action_plan_strategy(fvk, seed_phrase), 2..5)
+    prop::collection::vec(action_plan_strategy(fvk, seed_phrase), 1)
 }
 
 fn chain_id_strategy() -> impl Strategy<Value = String> {
@@ -801,7 +794,7 @@ fn generate_transaction_signing_test_vectors() {
     std::fs::create_dir_all(test_vectors_dir).expect("failed to create test vectors dir");
     const SEED_PHRASE_TEST: &str = "equip will roof matter pink blind book anxiety banner elbow sun young";
 
-    // let mut test_cases = Vec::new();
+    let mut test_cases = Vec::new();
     for i in 0..100 {
         let seed_phrase = SeedPhrase::from_str(SEED_PHRASE_TEST).expect("test seed phrase is valid");
         let sk = SpendKey::from_seed_phrase_bip44(seed_phrase.clone(), &Bip44Path::new(0));
@@ -831,13 +824,13 @@ fn generate_transaction_signing_test_vectors() {
 
         let action_names = actions_vec_as_string(transaction_plan.actions.clone());
 
-        // // Collect test case data
-        // let test_case: serde_json::Value = json!({
-        //     "index": i,
-        //     "name": format!("{}_{}", action_names, i),
-        //     "blob": hex::encode(&transaction_plan_encoded),
-        //     "hash": effect_hash_hex
-        // });
+        // Collect test case data
+        let test_case: serde_json::Value = json!({
+            "index": i,
+            "name": format!("{}_{}", action_names, i),
+            "blob": hex::encode(&transaction_plan_encoded),
+            "hash": effect_hash_hex
+        });
 
         let mut json_file = File::create(&json_file_path).expect("Failed to create JSON file");
         json_file
@@ -861,15 +854,15 @@ fn generate_transaction_signing_test_vectors() {
             .write_all(&hex_string.as_bytes())
             .expect("Failed to write blob file");
 
-        // test_cases.push(test_case);
+        test_cases.push(test_case);
     }
 
-    // // Write effect hash test cases
-    // let effect_hash_file_path = format!("{}/plan_effect_hash_testcases.json", test_vectors_dir);
-    // let mut effect_hash_file = File::create(&effect_hash_file_path).expect("Failed to create effect hash JSON file");
-    // effect_hash_file
-    //     .write_all(serde_json::to_string_pretty(&test_cases).unwrap().as_bytes())
-    //     .expect("Failed to write all test cases JSON file");
+    // Write effect hash test cases
+    let effect_hash_file_path = format!("{}/plan_effect_hash_testcases.json", test_vectors_dir);
+    let mut effect_hash_file = File::create(&effect_hash_file_path).expect("Failed to create effect hash JSON file");
+    effect_hash_file
+        .write_all(serde_json::to_string_pretty(&test_cases).unwrap().as_bytes())
+        .expect("Failed to write all test cases JSON file");
 }
 
 /// After the colon, there should be maximum 38 characters.
@@ -963,7 +956,7 @@ fn generate_hw_display_test_vectors() {
 
     let mut index = 0;
     let mut test_cases = Vec::new();
-    for i in 0..50 {
+    for i in 0..1 {
         let proto_file_path = format!("{}/transaction_plan_{}.proto", test_vectors_dir, i);
         let transaction_plan_encoded =
             fs::read(&proto_file_path).expect("Failed to read Protobuf file");
@@ -995,12 +988,6 @@ fn generate_hw_display_test_vectors() {
                     .0,
             );
 
-            let mut rng = OsRng;
-            println!("DUMMY ADDRESS 0: {:?}", rng);
-            let dummy_address = Address::dummy(&mut rng);
-            println!("DUMMY ADDRESS 1: {:?}", rng);
-            let auth_data = transaction_plan.authorize(rng, &sk).unwrap();
-            println!("AUTH DATA: {:?}", auth_data);
             let action_names = actions_vec_as_string(transaction_plan.actions.clone());
 
             // Collect test case data
@@ -1396,9 +1383,9 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 let value_display =
                     value_display(&value, &plan.transaction_parameters.chain_id, &base_denoms);
 
-                let claim_display = format!("UndelegateClaim\nValue {}", value_display,);
+                let claim_display = format!("UndelegateClaim Value {}", value_display,);
 
-                for line in format_for_display("Action", claim_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), claim_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
@@ -1423,11 +1410,11 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 };
 
                 let vote_display = format!(
-                    "DelegatorVote on Proposal {}\nVote {}\nVoting Power: {}",
+                    "DelegatorVote on Proposal {} Vote {} Voting Power: {}",
                     vote.proposal, vote_choice, power_display
                 );
 
-                for line in format_for_display("Action", vote_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), vote_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;

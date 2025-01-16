@@ -32,6 +32,10 @@ impl EffectHash {
     /// personalization string.
     pub fn from_proto_effecting_data<M: Message + Name>(message: &M) -> EffectHash {
         let mut state = create_personalized_state(&M::type_url());
+        println!("type_url: {:?}", M::type_url());
+        println!("message hex: {:?}", hex::encode(&message.encode_to_vec()));
+        println!("message bytes: {:?}", message.encode_to_vec());
+        println!("message: {:?}", message);
         state.update(&message.encode_to_vec());
 
         EffectHash(*state.finalize().as_array())
