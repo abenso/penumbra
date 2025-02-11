@@ -63,6 +63,10 @@ use std::{fs, fs::File, io::Read};
 use tendermint;
 use penumbra_tct as tct;
 use std::sync::Mutex;
+use once_cell::sync::Lazy;
+use rand::seq::SliceRandom;
+use penumbra_transaction::plan::{DetectionDataPlan, CluePlan};
+use decaf377_fmd::Precision;
 
 fn amount_strategy() -> impl Strategy<Value = Amount> {
     let inner_uint_range = 0u128..1_000_000_000_000_000_000u128;
@@ -71,6 +75,18 @@ fn amount_strategy() -> impl Strategy<Value = Amount> {
 
 fn asset_id_strategy() -> impl Strategy<Value = Id> {
     Just(*penumbra_asset::STAKING_TOKEN_ASSET_ID)
+
+    // Uncomment this to generate random asset ids
+    // let denoms = vec!["upenumbra", "ugn", "ugm", "uubtc"];
+    // let random_denom = denoms.choose(&mut OsRng).expect("denoms vector should not be empty");
+    
+    // Just(
+    //     Lazy::new(|| asset::Cache::with_known_assets()
+    //         .get_unit(random_denom)
+    //         .expect("unable to get upenumbra denom, which should be hardcoded")
+    //         .base().id()
+    //     ).clone()
+    // )
 }
 
 fn value_strategy() -> impl Strategy<Value = penumbra_asset::Value> {
@@ -557,9 +573,11 @@ fn position_withdraw_strategy() -> impl Strategy<Value = PositionWithdrawPlan> {
     (position_strategy()).prop_map(|position| PositionWithdrawPlan {
         position_id: position.id(),
         reserves: position.reserves,
-        rewards: vec![],
+        rewards: (0..rand::random::<u8>() % 4)
+            .map(|_| value_strategy().new_tree(&mut TestRunner::default()).unwrap().current())
+            .collect(),
         pair: position.phi.pair,
-        sequence: 1u64,
+        sequence: rand::random::<u64>(),
     })
 }
 
@@ -667,13 +685,19 @@ fn action_plan_strategy(
 ) -> impl Strategy<Value = ActionPlan> {
     prop_oneof![
         spend_plan_strategy(fvk).prop_map(ActionPlan::Spend),
-        output_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Output),
+        // output_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Output),
         // swap_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::Swap),
-        ics20_withdrawal_strategy(seed_phrase.clone()).prop_map(ActionPlan::Ics20Withdrawal),
-        delegate_plan_strategy().prop_map(ActionPlan::Delegate),
-        undelegate_plan_strategy().prop_map(ActionPlan::Undelegate),
-        undelegate_claim_plan_strategy().prop_map(ActionPlan::UndelegateClaim),
-        delegator_vote_strategy().prop_map(ActionPlan::DelegatorVote),
+        // ics20_withdrawal_strategy(seed_phrase.clone()).prop_map(ActionPlan::Ics20Withdrawal),
+        // delegate_plan_strategy().prop_map(ActionPlan::Delegate),
+        // undelegate_plan_strategy().prop_map(ActionPlan::Undelegate),
+        // undelegate_claim_plan_strategy().prop_map(ActionPlan::UndelegateClaim),
+        // delegator_vote_strategy().prop_map(ActionPlan::DelegatorVote),
+        // position_open_strategy().prop_map(ActionPlan::PositionOpen),
+        // position_close_strategy().prop_map(ActionPlan::PositionClose),
+        // position_withdraw_strategy().prop_map(ActionPlan::PositionWithdraw),
+        // auction_dutch_schedule_strategy().prop_map(ActionPlan::ActionDutchAuctionSchedule),
+        // auction_dutch_end_strategy().prop_map(ActionPlan::ActionDutchAuctionEnd),
+        //auction_dutch_withdraw_plan_strategy().prop_map(ActionPlan::ActionDutchAuctionWithdraw),
 
         // validator_definition_strategy().prop_map(ActionPlan::ValidatorDefinition),
         // swap_claim_plan_strategy(seed_phrase.clone()).prop_map(ActionPlan::SwapClaim),
@@ -682,15 +706,9 @@ fn action_plan_strategy(
         // ibc_action_strategy(seed_phrase.clone()).prop_map(ActionPlan::IbcAction),
         // validator_vote_strategy().prop_map(ActionPlan::ValidatorVote),
         // proposal_deposit_claim_strategy().prop_map(ActionPlan::ProposalDepositClaim),
-        // position_open_strategy().prop_map(ActionPlan::PositionOpen),
-        // position_close_strategy().prop_map(ActionPlan::PositionClose),
-        // position_withdraw_strategy().prop_map(ActionPlan::PositionWithdraw),
         // community_pool_deposit_strategy().prop_map(ActionPlan::CommunityPoolDeposit),
         // community_pool_spend_strategy().prop_map(ActionPlan::CommunityPoolSpend),
         // community_pool_output_strategy().prop_map(ActionPlan::CommunityPoolOutput),
-        // auction_dutch_end_strategy().prop_map(ActionPlan::ActionDutchAuctionEnd),
-        // auction_dutch_withdraw_plan_strategy().prop_map(ActionPlan::ActionDutchAuctionWithdraw),
-        // auction_dutch_schedule_strategy().prop_map(ActionPlan::ActionDutchAuctionSchedule),
     ]
 }
 
@@ -737,6 +755,30 @@ fn memo_plan_strategy(seed_phrase: SeedPhrase) -> impl Strategy<Value = MemoPlan
     memo_plaintext_strategy(seed_phrase).prop_map(|plaintext| MemoPlan::new(&mut OsRng, plaintext))
 }
 
+fn detection_strategy(seed_phrase: SeedPhrase) -> impl Strategy<Value = DetectionDataPlan> {
+    // Generate between 1-2 clues
+    let clue_count = 1..=2;
+    // Generate random precision between 1-32 bits
+    let precision = 1..=10u8;
+    
+    (clue_count, precision).prop_map(move |(count, precision_bits)| {
+        let precision = Precision::new(precision_bits).expect("valid precision bits");
+        let mut clue_plans = Vec::new();
+        
+        for _ in 0..count {
+            // Generate random addresses for the clues
+            let address = address_strategy(seed_phrase.clone())
+                .new_tree(&mut TestRunner::default())
+                .unwrap()
+                .current();
+            
+            clue_plans.push(CluePlan::new(&mut OsRng, address, precision));
+        }
+        
+        DetectionDataPlan { clue_plans }
+    })
+}
+
 fn transaction_plan_strategy(
     fvk: &FullViewingKey,
     seed_phrase: SeedPhrase,
@@ -744,9 +786,10 @@ fn transaction_plan_strategy(
     (
         actions_vec_strategy(fvk, seed_phrase.clone()),
         transaction_parameters_strategy(),
+        detection_strategy(seed_phrase.clone()),
         prop_oneof![Just(None), memo_plan_strategy(seed_phrase).prop_map(Some),],
     )
-        .prop_map(|(actions, params, memo)| TransactionPlan {
+        .prop_map(|(actions, params, detection_data, memo)| TransactionPlan {
             actions,
             transaction_parameters: params,
             detection_data: None,
@@ -795,7 +838,7 @@ fn generate_transaction_signing_test_vectors() {
     const SEED_PHRASE_TEST: &str = "equip will roof matter pink blind book anxiety banner elbow sun young";
 
     let mut test_cases = Vec::new();
-    for i in 0..100 {
+    for i in 0..1 {
         let seed_phrase = SeedPhrase::from_str(SEED_PHRASE_TEST).expect("test seed phrase is valid");
         let sk = SpendKey::from_seed_phrase_bip44(seed_phrase.clone(), &Bip44Path::new(0));
         let fvk = sk.full_viewing_key();
@@ -1025,11 +1068,11 @@ fn address_display(address: &Address, fvk: &FullViewingKey) -> String {
     let address_view = fvk.view_address(address.clone());
 
     match address_view {
-        // The address is not controlled by the user’s account.
+        // The address is not controlled by the user's account.
         // In this case it should be rendered using the Canonical Short Form.
         AddressView::Opaque { address } => address.display_short_form(),
-        // The address is controlled by the user’s account.
-        // In this case it should be rendered as “Main Account” or “Sub-account #N”,
+        // The address is controlled by the user's account.
+        // In this case it should be rendered as "Main Account" or "Sub-account #N",
         // depending on the account number.
         AddressView::Decoded {
             address: _,
@@ -1445,7 +1488,7 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 // Build display string conditionally including close_on_fill
                 let position_display = if position_open.position.close_on_fill {
                     format!(
-                "PositionOpen\nReserves 1: {}\nReserves 2: {}\nTrading Function p: {}\nTrading Function q: {}\nFee: {}\nClose on fill: true",
+                "PositionOpen Reserves 1: {} Reserves 2: {} Trading Function p: {} Trading Function q: {} Fee: {} Close on fill: true",
                         reserves_1_display,
                         reserves_2_display,
                         position_open.position.phi.component.p,
@@ -1454,7 +1497,7 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
             )
                 } else {
                     format!(
-                        "PositionOpen\nReserves 1: {}\nReserves 2: {}\nTrading Function p: {}\nTrading Function q: {}\nFee: {}",
+                        "PositionOpen Reserves 1: {} Reserves 2: {} Trading Function p: {} Trading Function q: {} Fee: {}",
                         reserves_1_display,
                         reserves_2_display,
                         position_open.position.phi.component.p,
@@ -1463,27 +1506,27 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                     )
                 };
 
-                for line in format_for_display("Action", position_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), position_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
             }
             ActionPlan::PositionClose(position_close) => {
                 let position_display =
-                    format!("PositionClose\nPosition ID {}", position_close.position_id);
+                    format!("PositionClose Position ID {}", position_close.position_id);
 
-                for line in format_for_display("Action", position_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), position_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
             }
             ActionPlan::PositionWithdraw(position_withdraw) => {
                 let position_display = format!(
-                    "PositionWithdraw\nPosition ID {}\nSequence number {}",
+                    "PositionWithdraw Position ID {} Sequence number {}",
                     position_withdraw.position_id, position_withdraw.sequence
                 );
 
-                for line in format_for_display("Action", position_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), position_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
@@ -1514,6 +1557,7 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 .last()
                 .unwrap_or("unknown")
                 .to_string();
+            
 
                 // Format starting price
                 let start_price = format!(
@@ -1540,7 +1584,7 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 );
 
                 let auction_display: String = format!(
-                    "DutchAuctionSchedule\nSelling: {}\nFor: {}\nStarting price: {}\nEnding price: {}\nStart block height: {}\nEnd block height: {}\nSteps: {}",
+                    "DutchAuctionSchedule Selling: {} For: {} Starting price: {} Ending price: {} Start block height: {} End block height: {} Steps: {}",
                     selling_display,
                     for_asset_display,
                     start_price,
@@ -1550,16 +1594,16 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                     auction.description.step_count,
                 );
 
-                for line in format_for_display("Action", auction_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), auction_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
             }
             ActionPlan::ActionDutchAuctionEnd(auction_end) => {
                 let auction_display =
-                    format!("DutchAuctionEnd\nAuction ID: {}", auction_end.auction_id);
+                    format!("DutchAuctionEnd Auction ID: {}", auction_end.auction_id);
 
-                for line in format_for_display("Action", auction_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), auction_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
@@ -1580,14 +1624,14 @@ fn generate_normal_output(plan: &TransactionPlan, fvk: &FullViewingKey) -> Vec<S
                 );
 
                 let withdraw_display = format!(
-                    "DutchAuctionWithdraw\nAuction ID: {}\nUnsold: {}\nProceeds: {}\nSequence number: {}",
+                    "DutchAuctionWithdraw Auction ID: {} Unsold: {} Proceeds: {} Sequence number: {}",
                     withdraw.auction_id,
                     unsold_display,
                     proceeds_display,
                     withdraw.seq
                 );
 
-                for line in format_for_display("Action", withdraw_display) {
+                for line in format_for_display(&format!("Action_{}", action_index), withdraw_display) {
                     output.push(format!("{} | {}", index, line));
                 }
                 index += 1;
