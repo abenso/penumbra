@@ -105,6 +105,7 @@ impl TransactionPlan {
         // Hash the effecting data of each action, in the order it appears in the plan,
         // which will be the order it appears in the transaction.
         for action_plan in &self.actions {
+            println!("action_plan effect_hash: {:?}", action_plan.effect_hash(fvk, &memo_key));
             state.update(action_plan.effect_hash(fvk, &memo_key).as_bytes());
         }
 
