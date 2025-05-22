@@ -1,40 +1,103 @@
 {
   "actions": [
     {
-      "communityPoolDeposit": {
-        "value": {
-          "amount": {
-            "lo": "105487505849066331"
+      "delegatorVote": {
+        "proposal": "133887054",
+        "startPosition": "41924",
+        "vote": {
+          "vote": "VOTE_ABSTAIN"
+        },
+        "stakedNote": {
+          "value": {
+            "amount": {
+              "lo": "234433987433430420"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
           },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          "rseed": "/93l7aKeGP31HpIFfvrRmVTvvS+hfuBiBGJC0KN8KxI=",
+          "address": {
+            "inner": "/MfPn/kTZ+re1jtrMiRbIUSZJ25GeBj85VRxKx5DR5G1Bxei3Ak46h48lMghzNMPAp5aVK2KRcwb63TTnKTfUG4cYXys4xjXrbJ3tn+rONs="
           }
+        },
+        "stakedNotePosition": "88364",
+        "unbondedAmount": {
+          "lo": "134250000425034378"
+        },
+        "randomizer": "QdXq8AWZVfY9vMkXn/osLbQjH+RmDtMoKPZ00100QQE=",
+        "proofBlindingR": "Gue9i78G0/bNRT2fk+8bxtAOA2slo6HADoionIfakwU=",
+        "proofBlindingS": "hP9/5M/de/nuBZFPugYzHD7+JmsjPaExegI1Njc2nAk="
+      }
+    },
+    {
+      "delegatorVote": {
+        "proposal": "263350860",
+        "startPosition": "10301",
+        "vote": {
+          "vote": "VOTE_NO"
+        },
+        "stakedNote": {
+          "value": {
+            "amount": {
+              "lo": "940028438206507844"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          "rseed": "nQyaqxBlljELY/qm9DTw3FGyc+wp8y+UjfETFa4N4a0=",
+          "address": {
+            "inner": "SPBAmkYNxrJlgXNuc/oU3sYwbiYz6TmQ4u3IICYmtPUQp9LbO5hq8P8/ySiEX/16rnqJDijZAdt4WSmia2XG8GT6ydG4HemoT3VyHDq1GAE="
+          }
+        },
+        "stakedNotePosition": "14303",
+        "unbondedAmount": {
+          "lo": "609005229238788313"
+        },
+        "randomizer": "Fcg1mZxdC9zn3wfI+QxmTmYOj9Fbj9MvvfaQl1TqLAE=",
+        "proofBlindingR": "U2J5j2Y+So1NhYskoOKMfmTKoMpKstaDHlpovM36ZhI=",
+        "proofBlindingS": "aFFxEEh4Io3wwBcqTCScrlXms6eCjX0U/3EEU3eCYQM="
+      }
+    },
+    {
+      "delegate": {
+        "validatorIdentity": {
+          "ik": "DmmOKkx5H+FDN7eBM9Uw0OL3Wsfr4eGMqpMf59e/FN0="
+        },
+        "epochIndex": "7063",
+        "unbondedAmount": {
+          "lo": "386653463299722771"
+        },
+        "delegationAmount": {
+          "lo": "521132214254795673"
         }
       }
     },
     {
-      "communityPoolOutput": {
-        "value": {
-          "amount": {
-            "lo": "223823246583562188"
-          },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          }
-        },
-        "address": {
-          "inner": "0nu/JCr7CH2ujOOSE5V30n8Np4JgnVXlacjBbPS/1Id1ADNEdqcu+wSnQ3SwIZZieMDVigyw8R25TI6hQ1W6jnJBiCiKtMt23hRO3Vzg/5M="
+      "positionClose": {
+        "positionId": {
+          "inner": "YlIm2Vs/Bbnda3zKjk/XhpgUExS5LWyIu9hTyxYc0Vg="
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "6517265301",
-    "chainId": "zzkidrpoeyjqa-309",
+    "expiryHeight": "280703",
+    "chainId": "gxeubtbe-445",
     "fee": {
       "amount": {
-        "lo": "370447175926720781"
+        "lo": "288191499588094325"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "Q2EzUMb2y6C5NZZJKm6dUpwH8r8x3KPGKyT++dx9+GGa6ZSK4GhyQZGfJMPy/RrVfYFJUL0MOE9CugS0AsOiIr8u7/0nVSHS+baPXB6/7lQ="
+      },
+      "text": "SLMTuWdKe  82  t3vuhWA t 3mUM 8N0hc4nXv7wI5td V ZaSElzJ3F3lYePt WwE9Q3 o ELh O rU CbZ HT  rq6 3gElYp582 y ain1U0bJJ2 ap7ug 2nn 7mZlivEk Aai  7yX33bGWbcv O1wi1N ir2OC6 L PAg R9eM tulJo8QFfkVNAQ1YfOtSNY6UPIXPeg D018 ld Pcg  W Z i pB9swa wS d0xiA dv 9  pKWiBe IQ4zcAi Ah 13KL cQ 33sf uH  3zSA  nF4dtky X6Pg3o Vd 365uobpn 7Zm VU 4XnXS6z167 IxrA G  V cpvv75  75M9H  Czd2ODfrW8 Sdc58ps9I3imRB ARTGM86uk g2Y8Q3jNAPUwdm"
+    },
+    "key": "wNTcVA5rzEDskvC84gx6eEDn62Sjeknn+0DWnFsexmk="
   }
 }

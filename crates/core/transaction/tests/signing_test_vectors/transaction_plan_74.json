@@ -1,67 +1,80 @@
 {
   "actions": [
     {
-      "output": {
-        "value": {
-          "amount": {
-            "lo": "340451464773121449"
-          },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          }
+      "delegate": {
+        "validatorIdentity": {
+          "ik": "N5LccI9dvw01LnwZxx5qPBZDh8zVZfHC3YXpishegLU="
         },
-        "destAddress": {
-          "inner": "lZNZUBD0MipStnXuM3cPr22YLwgojKy3JyRlnozn1Vw2hWY1JamId5I9tS8KyQKmnBaZNu59j8IYYJlDdXabCKRK1oqcwa/DCyysxL0Dq8Y="
+        "epochIndex": "4568",
+        "unbondedAmount": {
+          "lo": "748061049656578997"
         },
-        "rseed": "0/6eGeTmVJ2d7COm+skjceusQMRpISIDt9orcpJRCHE=",
-        "valueBlinding": "kC9OD+rv13/FvJ6cTk2VCz8W8Iioc9B30eZr6h73EgE=",
-        "proofBlindingR": "ZsBBPX1iV2IYPsALhBNk/GNdkqpGqtdNUhlvLhFhwgs=",
-        "proofBlindingS": "gtyxM4NRllH1yM6eg58vlie9KGi7ixmcuhKvuQl6yws="
-      }
-    },
-    {
-      "positionClose": {
-        "positionId": {
-          "inner": "gtPL48051rOkQp+2gn9BrLCj509nYG9oOYKXkhwniP0="
+        "delegationAmount": {
+          "lo": "317654021125713693"
         }
       }
     },
     {
-      "delegatorVote": {
-        "proposal": "712555247",
-        "vote": {
-          "vote": "VOTE_NO"
-        },
-        "stakedNote": {
+      "spend": {
+        "note": {
           "value": {
             "amount": {
-              "lo": "544802747201443663"
+              "lo": "287636415863463450"
             },
             "assetId": {
               "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
             }
           },
-          "rseed": "tNwEFKY/HXH4Yy2O1nkj7uMzjFPWWgM0RIuLTiCQlGE=",
+          "rseed": "JuodU8KkHEWUaTgmgJvrIuZtJFxEP76tzwRIWLzDLrQ=",
           "address": {
-            "inner": "r5mziC+H/DhYViULTsGWLZPHP23RaFodCaq5nkbP/ozoE5+BeOwiHtz9fQ6oYqaxUpdSiLEPaN7lxzZLPpO7WmAcFhTLiKamhrai9SiKyGg="
+            "inner": "iQvJjjaYqkV45BmwKNpWcuYnwoDYsGFm9MQtU2a8zx/POyls1h6NdEoh918vtpcYPhhZXYp5AIU52PsTi0BdsJ22XMQtVMDncuXULV8gtS8="
           }
         },
-        "unbondedAmount": {
-          "lo": "717142667821755777"
+        "position": "26097958522131",
+        "randomizer": "d/zUc6G8ov5AAPjYPDZXDKmqETPIoHMQVXJZLveerAM=",
+        "valueBlinding": "K6t7c0+v6vWwnozm0oDeC/cPdGPGV+kO5B22xTrnpQA=",
+        "proofBlindingR": "jtN8ZrYP22Yq5VJHrIsnE4lakk++0eLGGBpoBld6CRI=",
+        "proofBlindingS": "81b6y56QdbwLvnxpBHaBfVIpYUOQbtsiKlpv1X2lGwE="
+      }
+    },
+    {
+      "delegate": {
+        "validatorIdentity": {
+          "ik": "tpwaZ/Bc4La9GrFtlmTYbznH7XNPOJu/oOfzYajUJAI="
         },
-        "randomizer": "HTUNWh9GEIWD6NWa7faTnQvORMkg2NwaEkRehdg1FAA=",
-        "proofBlindingR": "fy864FBG0NtSQU1TjJlJeonN9YpdR/8Qx8G9sNIjuQo=",
-        "proofBlindingS": "YteMXag2Qd02/JE9tblmA16xKkpsYn9aMlHGSdEhtQ0="
+        "epochIndex": "4672",
+        "unbondedAmount": {
+          "lo": "990486249167893225"
+        },
+        "delegationAmount": {
+          "lo": "174928745053635644"
+        }
+      }
+    },
+    {
+      "actionDutchAuctionEnd": {
+        "auctionId": {
+          "inner": "gpQTAxeu4Ke7wfsToSrKGKilg5Pts4gGHr0ZdrHmNVM="
+        }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "1077693046",
-    "chainId": "kdduyqffphbnqajbpuljdmmoifcplxtz-00476524308212980",
+    "expiryHeight": "808382",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "642501004680437559"
+        "lo": "790819799801766572"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "4vRJs4S0TZkIAmnyjavrjgTnYJmI+bnMF1tzgcG/PP2Sc7eJ9HtqixUATyM9fNHrB9xi1Iq4CAf+c0jG8Nw5wMUP7VGwvUw/prge3F8tsXg="
+      },
+      "text": "cum wS  nN6674 sE04txQ G3zpT9fp28k4Tc Kj fMPl l Fig5cN 7 tJ9B Laa AuL9j12S4y1CH E 1LpvXR8SwssZ6 0C 7iP98J6  5a F4sA K sUCN Aplu3TG 9aPrLtb2SJ 7M801 a YR7C  9 QK  m7 qA 5LLgfuFt I6a H 5j50Rz  U2 fQUPPHpmwpa z5t8Lw dUVGj7EQ0hrPF T3Kw7yEF11stS2Qti W8FAGqqgZms aM t HRuBy4kg6fHYz4LVB9 3v0o6U6z9yGDT"
+    },
+    "key": "kGKkE40coHGDHt3zHGMuRJp91mCK1GTR8QE6FsAf9Sc="
   }
 }

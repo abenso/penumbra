@@ -1,43 +1,49 @@
 {
   "actions": [
     {
-      "ics20Withdrawal": {
-        "amount": {
-          "lo": "3373881155391355"
+      "spend": {
+        "note": {
+          "value": {
+            "amount": {
+              "lo": "468052816438571179"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          "rseed": "xLCiex48rpMCch0sHwag8OaZd51BLdhhtQOWtqnKD7Y=",
+          "address": {
+            "inner": "iQvJjjaYqkV45BmwKNpWcuYnwoDYsGFm9MQtU2a8zx/POyls1h6NdEoh918vtpcYPhhZXYp5AIU52PsTi0BdsJ22XMQtVMDncuXULV8gtS8="
+          }
         },
-        "denom": {
-          "denom": "0uC"
-        },
-        "destinationChainAddress": "penumbra1xm0z5x3n7gm5fwpg5szzrp5rh9lkhw4krp5sdyau0m583xlresj04m28tgluxlz2wlp48cfw4x5ayxgehq8pdkwmkatmfxmhy5zlrazl2hc8a02dsf4w2ex0xsv9c0hwectyrs",
-        "returnAddress": {
-          "inner": "9bYmDKXUX0u0R4ktQQy6j0ysqLM3adW2VI02twIetL9b488iRLJ6HIggCKijCD7kLadsiRZkQuso8wVf2C1YT4roBJu0qH+/2yYK/Z/snQ8="
-        },
-        "timeoutHeight": {
-          "revisionNumber": "838289593",
-          "revisionHeight": "507170589"
-        },
-        "sourceChannel": "channel-0"
+        "position": "27921454184985",
+        "randomizer": "fDmUTXdxOl8BWAGicrFKrtbojQWDHvm/OzKY8SEBdAM=",
+        "valueBlinding": "j+QhYcS03B7C1N+K6F/fbawXGfJJVXHf4eoTDgV0NgE=",
+        "proofBlindingR": "+EEZwLeECyUzHXFVBYpc0VA9kaQyys9niKUthJSvahE=",
+        "proofBlindingS": "t9w7CQyve8fxS5v4JiZ/KSZiupzrl+4Btdf65UosTgM="
       }
     },
     {
-      "communityPoolSpend": {
-        "value": {
-          "amount": {
-            "lo": "228861155409067192"
-          },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          }
+      "delegate": {
+        "validatorIdentity": {
+          "ik": "v9YcBqtBiyCfLljZCnLHe6SrFVP9QYpKS6D/zc4P9Wk="
+        },
+        "epochIndex": "160",
+        "unbondedAmount": {
+          "lo": "535424966243502383"
+        },
+        "delegationAmount": {
+          "lo": "602561084336689932"
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "9733323270",
-    "chainId": "boztic-225159793053704637422672",
+    "expiryHeight": "344364",
+    "chainId": "gcmdjsemumsljcxraugvhb-0004546257400712",
     "fee": {
       "amount": {
-        "lo": "535445417177531765"
+        "lo": "92443223263267640"
       }
     }
   }

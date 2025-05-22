@@ -1,35 +1,58 @@
 {
   "actions": [
     {
-      "actionDutchAuctionEnd": {
-        "auctionId": {
-          "inner": "c0FVvT19ufQMNoZkw4KE4iOWdnMwkedavwgeysjoPWo="
-        }
+      "ics20Withdrawal": {
+        "amount": {
+          "lo": "175506522626777344"
+        },
+        "denom": {
+          "denom": "c1j"
+        },
+        "destinationChainAddress": "penumbra1q9km2ld2g8mq7l2l35rhyp7l9203gtjpsqsvs3zp9xvcyn53m0az4a9gguqmgdx0dj22p7csz2m2yytca4m5utcjdnpllpl8mp4m29kyykvlruqvjr4267280j0nwfk2ztx7vw",
+        "returnAddress": {
+          "inner": "AW21fapB9g99X40HcgffKp8ULkGAIMhEQSmZgk6R2/oq9KhHAbQ0z2yUoPsQEraiEXjtd04vEmzD/4fn2Gu1FsQlmfHwDJDqrXlHfJ83Jso="
+        },
+        "timeoutHeight": {
+          "revisionNumber": "713970596",
+          "revisionHeight": "655634353"
+        },
+        "sourceChannel": "channel-0"
       }
     },
     {
-      "communityPoolOutput": {
-        "value": {
-          "amount": {
-            "lo": "846711980480633701"
-          },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          }
+      "undelegateClaim": {
+        "validatorIdentity": {
+          "ik": "fMf3ZnV39Xx3+X/d9r9oNG8O0vIUdaMYZkSPzgqXynA="
         },
-        "address": {
-          "inner": "/5VVlhnPz2rN3eOjE8R+aD17ie1u7hqm75JOeHIhEGSFcSTAGnQLPS2eGZEa3Bn9flIgapaiKThFkSEeYMEaccv9m4rgaqaV5sKkiyAz1Mg="
-        }
+        "penalty": {
+          "inner": "AAAAAAAAAAAAAAAAAAAAAP+QlruYx+KCQLeANG3F1jk="
+        },
+        "unbondingAmount": {
+          "lo": "313206702294566489"
+        },
+        "balanceBlinding": "bLJO+vKJJCZDlm6zWkF+ZtTj7p9R9GOONb6PJVicLQQ=",
+        "proofBlindingR": "uPASEkK4zVbdk0RznfiCvB/Dt+rjT8uf9C1nDTXaeAw=",
+        "proofBlindingS": "ROoUvzqKM/ARoPxMPnPF91gO3zew+Et32gA47CG0IA8=",
+        "unbondingStartHeight": "50900"
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "3827603787",
-    "chainId": "htxqbyniabeljdzvkagj-12379991737703822",
+    "expiryHeight": "109025",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "253952826649855945"
+        "lo": "879576477118255551"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "7ECnejrNHDqcRRiTVbGonMOfKUaoX7HtxvGaJeyEhALKZyetzLvj/tLP1SzvSWdziT1SOPFa8W6oy5mtiiej6nj8+od3AeyQNVb8aWWj8pc="
+      },
+      "text": "67Z  zZ thgJ5Qy V xoJs WM6tJr5f924zG4 zPWFOxxw 6777VzQVtGW 7 0R c7rF57U 8R Co60akthiTog04WwxlGJC x3 DhA8RI7pe 8ylrcO6 Sv   UP7z884cP35 aZ52vc9  y1ecf9 VnAJkZNpIF 51eO6w G  Lr 7uDcdm51qKDt1B QZZR KCGwhtZ5 imerxez58kLI 3edvHi323H zp1kIP8isS u9Zp  e  85yHoyz   pem"
+    },
+    "key": "xzQWE6S/8HkZVnzyK39ilIeDBYgefcQwzxHWVkh5E1E="
   }
 }

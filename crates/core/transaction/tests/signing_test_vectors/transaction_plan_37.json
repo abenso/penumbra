@@ -1,104 +1,59 @@
 {
   "actions": [
     {
-      "swapClaim": {
-        "swapPlaintext": {
-          "tradingPair": {
-            "asset1": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            },
-            "asset2": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            }
-          },
-          "delta1I": {
-            "lo": "483348454564315174"
-          },
-          "delta2I": {
-            "lo": "24981429482936026"
-          },
-          "claimFee": {
-            "amount": {}
-          },
-          "claimAddress": {
-            "inner": "QB5mPsV5DPjNF8f3jtnLafaPTQOZtmTsrLhZFiLODgT9xi++YRJgW/9nSpOF68m8wTRrPcflSSUxuyzlF3c7aIS0qihZZrLyHTz+CjLRSWg="
-          },
-          "rseed": "t6ldqiA0xarBX+jD/V39hPJRjMsNTpsN2wJgGET0yjU="
+      "undelegate": {
+        "validatorIdentity": {
+          "ik": "RlauFYsTk3fxcx97dEbdT2/gHsiOPci1JejaeVflxf0="
         },
-        "outputData": {
-          "delta1": {
-            "lo": "702953653"
-          },
-          "delta2": {
-            "lo": "1105375958"
-          },
-          "lambda1": {
-            "lo": "314"
-          },
-          "lambda2": {
-            "lo": "970"
-          },
-          "unfilled1": {
-            "lo": "518"
-          },
-          "unfilled2": {
-            "lo": "1757"
-          },
-          "tradingPair": {
-            "asset1": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            },
-            "asset2": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            }
-          }
+        "unbondedAmount": {
+          "lo": "520369136634058858"
         },
-        "epochDuration": "1000",
-        "proofBlindingR": "qjfQ6Mk1DkCzURRZXDcwQ0KmnDR/wUboT5QW5adIYQA=",
-        "proofBlindingS": "XF2ybTLSH3UinVI3iH1lXtIjtiuhCqH/lA3fUNALugE="
+        "delegationAmount": {
+          "lo": "759342082028618143"
+        },
+        "fromEpoch": {
+          "index": "7259",
+          "startHeight": "7259"
+        }
       }
     },
     {
-      "ics20Withdrawal": {
-        "amount": {
-          "lo": "176400219834859729"
+      "actionDutchAuctionWithdraw": {
+        "auctionId": {
+          "inner": "mjdKIRhQSGEzfh60Ua0IikkIBvNMKSjDFJo/Ofb9DOg="
         },
-        "denom": {
-          "denom": "3uP"
-        },
-        "destinationChainAddress": "penumbra1wyfvr9kww4qsmz24j8a6x0sjzv6zmhtgtya5t42t5dzdzs3sfw9l4grszzhmmt925d7n9psamt7d86mcd006900qkfsgtuajycln9egs0jdg53pdrnuv8hntng630jrdl4x32r",
-        "returnAddress": {
-          "inner": "K9cP6FyydE7UepFnY2P78hNe3NgeioarTMSSYYRIOW+nAs6UnLifc7xuOnOEMjrwAKf498SEIuLsW3/AXqvYX5JASEn3CdR3NQx4XfBs/DI="
-        },
-        "timeoutHeight": {
-          "revisionNumber": "856650701",
-          "revisionHeight": "674892652"
-        },
-        "sourceChannel": "channel-0"
-      }
-    },
-    {
-      "communityPoolOutput": {
-        "value": {
+        "seq": "603437183",
+        "reservesInput": {
           "amount": {
-            "lo": "278998628685915596"
+            "lo": "303996098376145698"
           },
           "assetId": {
             "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
           }
         },
-        "address": {
-          "inner": "C6+cg5wG8tHbA2+M8sBAV+186hwLGwxoVJidnYl5lRivIUsbgezAS0wFHDxPlLIgh+XYt9SiSt+UlF1FKF/J3ze7e5wTjTpFjgUAM07DxIY="
+        "reservesOutput": {
+          "amount": {
+            "lo": "550286051899311195"
+          },
+          "assetId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        }
+      }
+    },
+    {
+      "actionDutchAuctionEnd": {
+        "auctionId": {
+          "inner": "N8mZkDuTcnwc7TkH27Sxr5Ob+dHX5zTpEq+i/dLfhiw="
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "1133831552",
-    "chainId": "icrdgahzmdqgoczisu-10179236882093924987",
+    "chainId": "bneymqqhxzcpskmkdenrztaxjcye-3130164",
     "fee": {
       "amount": {
-        "lo": "72717640288502713"
+        "lo": "999530228863692883"
       }
     }
   }

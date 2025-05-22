@@ -1,71 +1,59 @@
 {
   "actions": [
     {
-      "positionClose": {
-        "positionId": {
-          "inner": "ZaXVx44Ksl8LB84e1YlEoRyeoW7LAn3xPE5B8ECxz0c="
-        }
-      }
-    },
-    {
-      "positionOpen": {
-        "position": {
-          "phi": {
-            "component": {
-              "p": {
-                "lo": "633458098361194110"
-              },
-              "q": {
-                "lo": "283318158393225329"
-              }
-            },
-            "pair": {
-              "asset1": {
-                "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-              },
-              "asset2": {
-                "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-              }
-            }
-          },
-          "nonce": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-          "state": {
-            "state": "POSITION_STATE_ENUM_OPENED"
-          },
-          "reserves": {
-            "r1": {
-              "lo": "227531294295513491"
-            },
-            "r2": {
-              "lo": "133548629561605043"
-            }
-          },
-          "closeOnFill": true
-        }
-      }
-    },
-    {
       "delegate": {
         "validatorIdentity": {
-          "ik": "1n1wKRwyp0hKMNlHCydIBixHxan2/NIHSfDLMSeNevo="
+          "ik": "G6547CVP7MVHCT5qQAjtfENnJn5VHm1+shZY53A/84Q="
         },
-        "epochIndex": "1552",
+        "epochIndex": "2524",
         "unbondedAmount": {
-          "lo": "988630199176420697"
+          "lo": "365089959843906213"
         },
         "delegationAmount": {
-          "lo": "153702134284315649"
+          "lo": "236973950842536410"
         }
+      }
+    },
+    {
+      "spend": {
+        "note": {
+          "value": {
+            "amount": {
+              "lo": "308129616845477204"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          "rseed": "2il1KcpPvi2oEG9xva79Hvt1dDZvL99Dtbxb9098UP4=",
+          "address": {
+            "inner": "iQvJjjaYqkV45BmwKNpWcuYnwoDYsGFm9MQtU2a8zx/POyls1h6NdEoh918vtpcYPhhZXYp5AIU52PsTi0BdsJ22XMQtVMDncuXULV8gtS8="
+          }
+        },
+        "position": "163143339046177",
+        "randomizer": "7XkDIzcNa4wRWYqpiIfvuNd+Ld8gKhY8b0J+q9wwZgA=",
+        "valueBlinding": "2tloMwvvKpmHnZYVjgqq8/tgV7evkgoPwBDbHnVyoAE=",
+        "proofBlindingR": "tLrypF6l+oxGNPO9p8k3CReNdPwWnZPCMshO4Lsicgo=",
+        "proofBlindingS": "bXi6o53eN6ZacyabWCmX6Z1AkEWQqEytGzldw+rBBQI="
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "208365756",
-    "chainId": "utekqgwijzn-597",
+    "expiryHeight": "479142",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "389032767397373614"
+        "lo": "145324482017075567"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "qM9t/iXlMhE0l0m33f/MyD/uev0lWXfL07pcX9qLkJtJ5M+ietmAhQAv5hxO+ViRX4osUO2EpNV4h4idb9mXbVCyJGg4lelPAv3LetKYS4k="
+      },
+      "text": "o p805E655zG38R3 IJ 2Sfk  W8dlKL2CAsv Yu 8G39ol9HK3R2MEU4Lh70V04 hQ 6 Q7Q Q36f O  O iVbgI9ww5Lomz    XQi5 F lAxup5bht8jYBd066 4 CF0E6 O hSM0  RH8 j C9 22XEtRw h2iUVx 25  E5Sq R  4u c 1W"
+    },
+    "key": "FSN6WchRKLi2r4ZqgGbCt/lwjq7ZSCKpAlPa0b67YdA="
   }
 }

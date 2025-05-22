@@ -1,27 +1,22 @@
 {
   "actions": [
     {
-      "positionWithdraw": {
-        "reserves": {
-          "r1": {
-            "lo": "201443633617440129"
+      "output": {
+        "value": {
+          "amount": {
+            "lo": "938864617273279154"
           },
-          "r2": {
-            "lo": "617392343763087923"
-          }
-        },
-        "positionId": {
-          "inner": "X+WR9ktERUS4w2LkgLDEHEVZs2MEtTB5lOH4gmNbP8c="
-        },
-        "pair": {
-          "asset1": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          },
-          "asset2": {
+          "assetId": {
             "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
           }
         },
-        "sequence": "1"
+        "destAddress": {
+          "inner": "o+g2fPlhgQQoxYXUXbZadr2IQbqv0r7/qUI6mtxAlgv8uWLIZ01Pxot4Sd6XSJA7QpDS1eEM25Orz47nzDpnHNM1+5RnJMC1DB+x4SnLCWM="
+        },
+        "rseed": "WFEU1CpDSC0sXoqWfKk5ZiOnOeEOwKIFwQn4OXCBtcI=",
+        "valueBlinding": "Apewfqkh78ocA58gVkiKNOy04VcxpbJLzCEpXWn7/AA=",
+        "proofBlindingR": "2EkdEf55m4Gq/7Gu160A/uJmYebbQuR/j+xp92bOkQ4=",
+        "proofBlindingS": "71hFSr+mbC5KimgKZbT3sC0pJLEjWkWSw9jTpsovEhA="
       }
     },
     {
@@ -29,61 +24,40 @@
         "note": {
           "value": {
             "amount": {
-              "lo": "902684893903255648"
+              "lo": "496568241745585466"
             },
             "assetId": {
               "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
             }
           },
-          "rseed": "1VeNb0KR0w1uBg8UWniP7BzRDNdG71h7VAo9YhQ0dmo=",
+          "rseed": "F+oCKEqAP+BYDUGb5BBw9CW2r8YxyTPCcbo/FC4IvfM=",
           "address": {
-            "inner": "r7ae/+8Q9d3QdaAs66/GAAbYBo/Am59nYWeIBU7REchE3LYtFPa1EHW2Lo1KZcRWuXzO/cM54CLSFnv2iArQnxjrlJnTB4nGnuLdFtCY9vc="
+            "inner": "iQvJjjaYqkV45BmwKNpWcuYnwoDYsGFm9MQtU2a8zx/POyls1h6NdEoh918vtpcYPhhZXYp5AIU52PsTi0BdsJ22XMQtVMDncuXULV8gtS8="
           }
         },
-        "position": "59296039256241",
-        "randomizer": "1SoYgexQCRka4bUm33V2m/TCTX/sB1sNHxdR0KhWtQA=",
-        "valueBlinding": "GAu0X26lL+R898yc972quKAzswvUNlP54JUMCQZdZAQ=",
-        "proofBlindingR": "NrQe1ZvB5B5dNYgVLA2o7UdamB5rDcHisF0PlUi1ShE=",
-        "proofBlindingS": "VD3u2xPrTvmCQzSLTSVCsoRuvo1pvstLE4ydXREnVQA="
-      }
-    },
-    {
-      "communityPoolDeposit": {
-        "value": {
-          "amount": {
-            "lo": "516233400468744618"
-          },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          }
-        }
-      }
-    },
-    {
-      "undelegate": {
-        "validatorIdentity": {
-          "ik": "LKckY3QlmyaFfp0fOoPsqLK8a0hC6A6hVFlQBw5G4ok="
-        },
-        "unbondedAmount": {
-          "lo": "331733130205834259"
-        },
-        "delegationAmount": {
-          "lo": "12804681958798873"
-        },
-        "fromEpoch": {
-          "index": "8673",
-          "startHeight": "8673"
-        }
+        "position": "151919786396467",
+        "randomizer": "cUfPGvGoEyKV1iibep9FST6NaVVUAskE9etSCY/PGgM=",
+        "valueBlinding": "k3GrJXjjmL3V0kXUR+1L6cLKZOIg3ZVe/ekbUzNw2gI=",
+        "proofBlindingR": "MCBH/wC9bzAz2OASlXsh+cKa3n80dzQD+MB0yW032ws=",
+        "proofBlindingS": "DOOqsPt2o1s7ddyMAqJ1UgBloeJ62+Og+9lqSxNzcgs="
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "3463037096",
-    "chainId": "mrununqsiunfkjzgegcnsr-496741038808052588830534002144",
+    "chainId": "hetyurmnqmnx-9915738033183535302354596488",
     "fee": {
       "amount": {
-        "lo": "317441656977586368"
+        "lo": "28736663362250682"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "y9+IA/dk7IkZMZOkrtmbrlvbeYn13JwM4Pk1b9k2o2KO4P83qj1KpQ1rIdhllLZz6A7fMvhnnAxvyozGRaJmDApXN3F26FDi9OEMt2wcvUw="
+      },
+      "text": " 6m 5G2 N7EF p2JtV  UwgSMbj l chO43Z4 Wz95 Q9 VPF5Yoo7h6Iw3 aa9 R W7 G xdGT3Q 1L Cgkz teBEc cZpWGS33B U5y 0 z aYP2K2RNi7pGO  r  Z7CdD1 J"
+    },
+    "key": "BHdxpOF+/GKlvoB/XtXRi6G7KklSoeIWqK/oT8a2KR0="
   }
 }

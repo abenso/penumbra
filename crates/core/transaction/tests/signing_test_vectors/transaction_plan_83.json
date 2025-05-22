@@ -1,40 +1,65 @@
 {
   "actions": [
     {
-      "communityPoolOutput": {
+      "output": {
         "value": {
           "amount": {
-            "lo": "233239121287366481"
+            "lo": "943801544306669496"
           },
           "assetId": {
             "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
           }
         },
-        "address": {
-          "inner": "5pyKiG9GOmdj1R+7uUK0xogu32WZehdZSdH3oPvU7BRJSl8cxW92N1iIXWULncdtsyBmzZjps07S4CDe2r8Wl9kc9uL7Ao+0NlkzcVH/FfU="
+        "destAddress": {
+          "inner": "Hkrr1Lziys+WPkKXU8sewxMxa5uHNK2eKD5MaLKDcx7kMJiNUSMVgF44ShpTxkxcvS/Sjo9qNGr0lkN4D4a64wQk/AEU8DkfsiDO3zHSnQE="
+        },
+        "rseed": "Ln1a/mjzjyjARllwdETejJg8giUBxSk4Ajny+CbyDvU=",
+        "valueBlinding": "mqOa9ZsCv0GcxwLx6tZQo+erjTZ72iugwPKP8WA/MAQ=",
+        "proofBlindingR": "Cx1Yn1qKg2pT1EKPQ+j5yjUdrsD9he3R3UUKjiHB3Qs=",
+        "proofBlindingS": "X+MkFKKfJZT/S4GFG+qVRrXMidAXAR4fNTnvr/0dpBI="
+      }
+    },
+    {
+      "undelegate": {
+        "validatorIdentity": {
+          "ik": "+TR6U4nw29sGk93NYHXk2AZGK/nT+Y+CmXfGYIybFP4="
+        },
+        "unbondedAmount": {
+          "lo": "93937514755345510"
+        },
+        "delegationAmount": {
+          "lo": "522755316769239386"
+        },
+        "fromEpoch": {
+          "index": "4632",
+          "startHeight": "4632"
         }
       }
     },
     {
-      "proposalSubmit": {
-        "proposal": {
-          "title": "slmoicbwarrjduvwlszcecqv-873603",
-          "description": "kcy-85204757736789404739",
-          "signaling": {}
-        },
-        "depositAmount": {
-          "lo": "226793985111579160"
+      "actionDutchAuctionEnd": {
+        "auctionId": {
+          "inner": "37kH4iA27LzilghPWqLZLaJN7UDM767d0E295reN20w="
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "6962057625",
-    "chainId": "ocegnwkkpqwehfpmirirsxkrnpc-0181549246346809501680805277930",
+    "expiryHeight": "804573",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "737214071928375968"
+        "lo": "117633456693549709"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "J5pHnFxCyOEdOBffwiHQ28on6zsVPRNZaQIrkFRDuh2q6aVD0JZWWi2VhT2S5HJ6jpi7soNZcX2jW5RkqtwSSuMlvIB83PElzPrQUlqRg+c="
+      },
+      "text": "P1JmA B2K QCGcR0Tvt8j a3 LZ  w243uUtBL b   l yh b8Lh S9jq6ms Q5MbCN69  ZhEng2S R7YbR Z9W  ayj88GevO zWaPj 315dP7 88z7 gPyS2X0W9 f kN0PQR7 tfzCxzw 9a417 xzm2M  q L I oxa HhMiNRPN755 Kw35K  uXNEdak7 sl66IYYtpVDXrk82t V8mR7cL 2C1TYZ05doIp3Ju no z6py1   VG   tl4S JP"
+    },
+    "key": "DTZISr9glNuOdMWIibnrVySuYC5ZKJopHbmhk9e2ktk="
   }
 }

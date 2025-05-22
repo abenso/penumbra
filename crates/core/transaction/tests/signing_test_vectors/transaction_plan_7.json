@@ -1,26 +1,15 @@
 {
   "actions": [
     {
-      "proposalDepositClaim": {
-        "proposal": "414267719",
-        "depositAmount": {
-          "lo": "799855507655296861"
-        },
-        "outcome": {
-          "failed": {}
-        }
-      }
-    },
-    {
       "positionOpen": {
         "position": {
           "phi": {
             "component": {
               "p": {
-                "lo": "616134581316380473"
+                "lo": "435682860161283464"
               },
               "q": {
-                "lo": "918024852624877366"
+                "lo": "913624477644497567"
               }
             },
             "pair": {
@@ -38,10 +27,10 @@
           },
           "reserves": {
             "r1": {
-              "lo": "745860647007517824"
+              "lo": "484057903290223294"
             },
             "r2": {
-              "lo": "156282182435216568"
+              "lo": "362342470221522364"
             }
           },
           "closeOnFill": true
@@ -49,31 +38,63 @@
       }
     },
     {
-      "ics20Withdrawal": {
-        "amount": {
-          "lo": "152229665045581333"
+      "positionWithdraw": {
+        "reserves": {
+          "r1": {
+            "lo": "273566077134640521"
+          },
+          "r2": {
+            "lo": "782904515311185047"
+          }
         },
-        "denom": {
-          "denom": "DgKM53"
+        "positionId": {
+          "inner": "FbRVcXPJyeBXLcUTp4S4fn/tK1uSRVssV1fh49sq2q4="
         },
-        "destinationChainAddress": "penumbra10c0jlkkwucgcsedq7v3uhh6pgrk6h3429mx0gkltugg3maxt3egyemdfx0neg9x55wjzgjerexjxc2mjl8l7hyququ00p69gs6vxr4ga66f4l9yjfdhzdtzjgfczxvyegm9k9s",
-        "returnAddress": {
-          "inner": "HsvuGv09+sAwmKC3LG7F94ac/mToGgFgRfNWnBA9tg/lqg32n9SUmnIm8CLfKJvi9MGSmoKkLs6z0cM65FIl20Rgx+e7CM4B65SvBHjtweU="
+        "pair": {
+          "asset1": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          },
+          "asset2": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
         },
-        "timeoutHeight": {
-          "revisionNumber": "635443618",
-          "revisionHeight": "21032834"
-        },
-        "sourceChannel": "channel-0"
+        "sequence": "11685359108096515049"
+      }
+    },
+    {
+      "actionDutchAuctionSchedule": {
+        "description": {
+          "input": {
+            "amount": {
+              "lo": "274034361842661866"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          "outputId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          },
+          "maxOutput": {
+            "lo": "922656858042580344"
+          },
+          "minOutput": {
+            "lo": "325109490105844421"
+          },
+          "startHeight": "178494041",
+          "endHeight": "178494042",
+          "stepCount": "196053630",
+          "nonce": "L626jJsFc0301ABRg7XUrsDwUCohjKLb7owT+eYrM7c="
+        }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "8785158461",
-    "chainId": "ekeysoehpmdegwrzwcecspmsjm-49221425172907582434487920",
+    "expiryHeight": "361935",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "663279731578099519"
+        "lo": "548335590852944895"
       }
     }
   }

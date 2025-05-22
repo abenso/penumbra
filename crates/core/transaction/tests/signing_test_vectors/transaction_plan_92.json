@@ -1,37 +1,47 @@
 {
   "actions": [
     {
-      "positionClose": {
-        "positionId": {
-          "inner": "dIkWbPwTffJ+aQ1gfF+10NCIYwzy0/0hDY2Tc5TEsic="
-        }
+      "ics20Withdrawal": {
+        "amount": {
+          "lo": "46169213583519970"
+        },
+        "denom": {
+          "denom": "3C472GKeyfX"
+        },
+        "destinationChainAddress": "penumbra1ke24vz597p43suun37f70n97fq4f6wc363z2p9lzvtuqff9m27n3v4q0k9uexrrvwwr4tk0wmc60ga3kak49eke76a5mxc4vvv7yd6awfy4lzaguthk6ycsmda4ug48qeqeqqq",
+        "returnAddress": {
+          "inner": "uaD6RotpaW6Mefp4qWHky0RsRpwXkU4nb3m7AcUFZ8y8P9+TdV5j9JyCuHPtBZnkK3aIytKBklMECj30KxvP6WCsj1z+gcKlLM0lhEVlCiA="
+        },
+        "timeoutHeight": {
+          "revisionNumber": "693961092",
+          "revisionHeight": "429364830"
+        },
+        "sourceChannel": "channel-0"
       }
     },
     {
-      "undelegate": {
-        "validatorIdentity": {
-          "ik": "tIFWGcVz07Xmvw+gCGXFoWWu8y45GBX4RWvmqUmK9FQ="
-        },
-        "unbondedAmount": {
-          "lo": "675995424489524486"
-        },
-        "delegationAmount": {
-          "lo": "882404331737823102"
-        },
-        "fromEpoch": {
-          "index": "3181",
-          "startHeight": "3181"
+      "positionClose": {
+        "positionId": {
+          "inner": "xp4/VbqQ3NG/cxBHoJaHSvZg9o14KhUli5da0iott8A="
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "8782804295",
-    "chainId": "n-037710",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "220097666912544663"
+        "lo": "468753307422339795"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "3gMWs36pD1spTkv9Ntbg2ERxRFrugne4Il0v54C9zqNMzvIra6mmR+oNZ5tYTwBwbIB3G2koiHFzkaywX7jbB5cvQDj/hKOn9CIXZEnbQps="
+      },
+      "text": "yP CwW 3vK72Uk  5sKcQof580zwQ8V4Tv m k79  N gQ2153SrNw wa9 iZfM9Eg2 3a2BvNv8r  veDZ0Z 1 yRL7 k2 11tL GXDp7sx91VW5K Wx6FdL C Uxi6 dWQughhrF3W  eJY 0 A5XBq35Z7Jr7 f 9I6EaksAzOySv3WbEO 64E9SD 4O3CEl3 S QzXOMCxr7k2  m 0Uo e  mIk RNsQWq C3 6 h5mX 6KDF g vH p   1H dt 4wH0 XDZUzY61G 6 x Plw2PsKs125 5DR68 bvVudgwKX6Z4o5   eM52AztP3KQUB AJW9wj31 wXsB5 PhRh9 4q1 E5WF VVw 0 7zQ2 RIY"
+    },
+    "key": "Z+cBvG+L5J0lFE2MrOry/RyZQLJxbTgB8OvWYzM0CTo="
   }
 }

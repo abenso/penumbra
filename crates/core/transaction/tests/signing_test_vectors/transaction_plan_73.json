@@ -1,60 +1,52 @@
 {
   "actions": [
     {
-      "undelegate": {
-        "validatorIdentity": {
-          "ik": "7CaaPPRctLemdELS5ODMtwuTL3gROmR5jHZ5OPLbkao="
-        },
-        "unbondedAmount": {
-          "lo": "345308470694977905"
-        },
-        "delegationAmount": {
-          "lo": "245954095699004737"
-        },
-        "fromEpoch": {
-          "index": "1330",
-          "startHeight": "1330"
-        }
-      }
-    },
-    {
-      "undelegate": {
-        "validatorIdentity": {
-          "ik": "1DpgYqmHzYNnvHG4JJn9wsOFxFM8ZhpDYKo5YjikfHM="
-        },
-        "unbondedAmount": {
-          "lo": "36106434607680705"
-        },
-        "delegationAmount": {
-          "lo": "261931724086607083"
-        },
-        "fromEpoch": {
-          "index": "9386",
-          "startHeight": "9386"
+      "actionDutchAuctionSchedule": {
+        "description": {
+          "input": {
+            "amount": {
+              "lo": "42835235210926043"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          "outputId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          },
+          "maxOutput": {
+            "lo": "933128737791989790"
+          },
+          "minOutput": {
+            "lo": "902716632824038426"
+          },
+          "startHeight": "610681510",
+          "endHeight": "610681511",
+          "stepCount": "972567707",
+          "nonce": "VkAJ40BoxTbELEQNTBFG1rj+Ht3tBJW7ZZrMpj+cPAQ="
         }
       }
     },
     {
       "delegate": {
         "validatorIdentity": {
-          "ik": "nZGt2iT0BHgS2H5dAAEwfBXC+CongF6+j0UdU1WxTh0="
+          "ik": "7WQhbpKB6s4EMBnkU3hv502Y208QBvXneXrUgh89qjk="
         },
-        "epochIndex": "4284",
+        "epochIndex": "5422",
         "unbondedAmount": {
-          "lo": "393065063982521479"
+          "lo": "21513355127923880"
         },
         "delegationAmount": {
-          "lo": "518097777490461295"
+          "lo": "470256418701215955"
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "3525353636",
-    "chainId": "henosxdhdlqtfcikkdg-2893172678357769844448905",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "733669609673625852"
+        "lo": "765977133361295518"
       }
     }
   }

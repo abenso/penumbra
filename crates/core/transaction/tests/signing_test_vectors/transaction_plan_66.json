@@ -1,49 +1,113 @@
 {
   "actions": [
     {
-      "swap": {
-        "swapPlaintext": {
-          "tradingPair": {
-            "asset1": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            },
-            "asset2": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            }
-          },
-          "delta1I": {
-            "lo": "674535027910489261"
-          },
-          "delta2I": {
-            "lo": "941145116189604343"
-          },
-          "claimFee": {
-            "amount": {}
-          },
-          "claimAddress": {
-            "inner": "UPDGwS0qaAfxlMcM107B1sskbcZkYyxf2Ixb2ahb0f7g8X+o7+c18f1vpcJIT80vohwsc24+vo6HmSwoc5WcNfsXBJ3D3jZv67wWPV4ys7M="
-          },
-          "rseed": "/ddywbYPiEyKyDf8zOHzEEoGzZqJhtUiWRttImEWDWo="
-        },
-        "feeBlinding": "XCEnr64ooFWSP3Obt5vDKIOqiFXpV+P+e4cnpHvbmgA=",
-        "proofBlindingR": "wtNYlVuHr8MVQGDL3FdNlmSu+BfnZ/wKWNsSqV5RQAA=",
-        "proofBlindingS": "TSPfqLBV7MTvZPASeJwW09pCBVFvaQuThZT221OhrQI="
+      "positionClose": {
+        "positionId": {
+          "inner": "ndUOsaKR/iyDZX3iNUcmUqUfCSBT4ewK0h2bGWScqzI="
+        }
       }
     },
     {
-      "positionClose": {
+      "positionWithdraw": {
+        "reserves": {
+          "r1": {
+            "lo": "863411279585063052"
+          },
+          "r2": {
+            "lo": "388219283858124801"
+          }
+        },
         "positionId": {
-          "inner": "3amiiAtHxnxs3WQJoYIX4ISoki3lYph9YnNOw+V2tYg="
+          "inner": "1fSjNLtouYyL7v1V74JhsVPZt2Wkg93EkK8tHvZ19G8="
+        },
+        "pair": {
+          "asset1": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          },
+          "asset2": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        },
+        "sequence": "1130276537696108288",
+        "rewards": [
+          {
+            "amount": {
+              "lo": "99966606003287900"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          {
+            "amount": {
+              "lo": "296858337347005017"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          {
+            "amount": {
+              "lo": "49547931078446239"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          }
+        ]
+      }
+    },
+    {
+      "undelegateClaim": {
+        "validatorIdentity": {
+          "ik": "BPPo/+eFKrc0lpcYkvv7+BHUUmHtH7YS1B9LJXQtEWQ="
+        },
+        "penalty": {
+          "inner": "AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA="
+        },
+        "unbondingAmount": {
+          "lo": "710292664205382457"
+        },
+        "balanceBlinding": "zqAWy5IcrBygPUmiMrIp//I/wN0h2h3e6i5UzhjOVwE=",
+        "proofBlindingR": "4l0aQFnRl/KhhNH1jTRjaGd7CFDywgGOZ8fPKXAxUgY=",
+        "proofBlindingS": "XUsAn/IpjKWyvskREqF2n5QRQBDz3SVWcu1niS+90gc=",
+        "unbondingStartHeight": "69582"
+      }
+    },
+    {
+      "actionDutchAuctionSchedule": {
+        "description": {
+          "input": {
+            "amount": {
+              "lo": "559493949287877590"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          "outputId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          },
+          "maxOutput": {
+            "lo": "904700290239339368"
+          },
+          "minOutput": {
+            "lo": "769605225308812076"
+          },
+          "startHeight": "883274211",
+          "endHeight": "883274212",
+          "stepCount": "63113523",
+          "nonce": "GDQLjUGo+Y34HtMNewFEKmEzIEw46lzapzmRDC65eRQ="
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "4824550852",
-    "chainId": "ycotzogqtlumfmxxxxuv-658337503005564986402745039744",
+    "expiryHeight": "307332",
+    "chainId": "jtddal-9941465563813557758139394813",
     "fee": {
       "amount": {
-        "lo": "364595764382967855"
+        "lo": "844749205435179654"
       }
     }
   }

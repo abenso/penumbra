@@ -1,51 +1,90 @@
 {
   "actions": [
     {
-      "communityPoolOutput": {
+      "output": {
         "value": {
           "amount": {
-            "lo": "931106998994222370"
+            "lo": "222312507517289499"
           },
           "assetId": {
             "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
           }
         },
-        "address": {
-          "inner": "9b+HAFafPR09cK7ZFcEq5N9s84GLlN9nWXUQs7fDEH8GZbqs0XlQMW6Bz8mJ4pUCyRexHQFfwUG+DSn3t9GlxoB0Oo+rm8R1s8aI8XdNCnY="
-        }
+        "destAddress": {
+          "inner": "oj4ZJmDg3eYTNh0M2WilnCCvVSSMs65sAYm5Xymmkm5VRpsyNPm9DMm4yDfGG6muvJ1u8/ydZ5NCGmE8Ar/4gV/rxUtNLTEKN6rkgo12nfs="
+        },
+        "rseed": "vQppfsvm4Jbw/x+hJjrp32ZTcER3rHwYnMin1fQBzYM=",
+        "valueBlinding": "jLLY+Qg2/CQnch1+wMsaylROc8Lyx4bQR+8+rhyneQE=",
+        "proofBlindingR": "j3wDmNzvBp3ET+f3zlMAJ+8hHuDeuXYkarO99qjzgBE=",
+        "proofBlindingS": "EURjYz9CyFtliEI/3NW+Xn5Zs73MagP+cNkUt+xw+go="
       }
     },
     {
-      "actionDutchAuctionWithdraw": {
-        "auctionId": {
-          "inner": "OZa1TjBenh1Af9KL4Uvs/BABtda8yiAMqYgePYjsOlI="
+      "delegatorVote": {
+        "proposal": "273419030",
+        "startPosition": "8017",
+        "vote": {
+          "vote": "VOTE_YES"
         },
-        "seq": "369521495",
-        "reservesInput": {
-          "amount": {
-            "lo": "18275459060285815"
+        "stakedNote": {
+          "value": {
+            "amount": {
+              "lo": "508905643141988131"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
           },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          "rseed": "eVFb10VH1ha5j+QWBwt9ekd/DMk3TGKgitX2uAS4rtE=",
+          "address": {
+            "inner": "aucXBrb3k7NJCQI/TKzuArEP0fnUUKZTM0Uj3we5bNDlNEe2IAIdWq1FkOV5DM5QTK91kfoMcXqfWVvmvh4i5RrJRzzLbgYnfCiMiquHcWI="
           }
         },
-        "reservesOutput": {
-          "amount": {
-            "lo": "800874051388190217"
+        "stakedNotePosition": "83393",
+        "unbondedAmount": {
+          "lo": "582874238960507756"
+        },
+        "randomizer": "Nt0RXcZ/3F0DBgj7jS5+3emq6wwz4AeJKV0ohOCfPQQ=",
+        "proofBlindingR": "DyD/cxfYEBrSsteaTq13IwRn+/cppq1CM0yEHwyZlQc=",
+        "proofBlindingS": "C0qqRq95i05Q/XHK84d8o5rycT2krZVVwCNVYkt9zgw="
+      }
+    },
+    {
+      "delegatorVote": {
+        "proposal": "458250291",
+        "startPosition": "45523",
+        "vote": {
+          "vote": "VOTE_YES"
+        },
+        "stakedNote": {
+          "value": {
+            "amount": {
+              "lo": "810385062956431359"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
           },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          "rseed": "AyQvkJlvoI7+WXu2e3cQ+qUIW2RyxVhGIHuWgXsLTQ0=",
+          "address": {
+            "inner": "TizEZLRr31Vu+50rtlP1+8EuUma0uUQJProfQeHy57nnOADoKlf0k88idEVSJoRK4zvxiMvJas1NXezo1zCKJWpg2Ft0C0DS2aDWFs7jOX8="
           }
-        }
+        },
+        "stakedNotePosition": "34311",
+        "unbondedAmount": {
+          "lo": "154775832742242916"
+        },
+        "randomizer": "hFZ9s9ZFf/rK+WbJalyjCA/8+ZXcdANr4Y8w5c5YWQQ=",
+        "proofBlindingR": "gWkmByZ7wJUxK0agfwBqnRVYXJpm8K0eFO+tnRidvQ0=",
+        "proofBlindingS": "5MT/ecrgP7HGxrD9usCBEOM8JYgv1IagIvm6jfGObwU="
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "4580144751",
-    "chainId": "ghvwygiemgzlecm-5778450914",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "267843306180849481"
+        "lo": "40867756426488852"
       }
     }
   }

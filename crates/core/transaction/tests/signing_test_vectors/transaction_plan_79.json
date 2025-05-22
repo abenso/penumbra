@@ -1,34 +1,79 @@
 {
   "actions": [
     {
-      "proposalWithdraw": {
-        "proposal": "143473475"
+      "positionWithdraw": {
+        "reserves": {
+          "r1": {
+            "lo": "699046696132808414"
+          },
+          "r2": {
+            "lo": "996851963967695495"
+          }
+        },
+        "positionId": {
+          "inner": "YZL0Sc4emZgzJHBvwjpxinNayXFY2b5p4Aa/eGvGErg="
+        },
+        "pair": {
+          "asset1": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          },
+          "asset2": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        },
+        "sequence": "11386166801594196425",
+        "rewards": [
+          {
+            "amount": {
+              "lo": "110352883840163231"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          {
+            "amount": {
+              "lo": "7420695727973985"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          {
+            "amount": {
+              "lo": "5566412688868077"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          }
+        ]
       }
     },
     {
-      "undelegateClaim": {
+      "undelegate": {
         "validatorIdentity": {
-          "ik": "BrvfJm59aRbU93ppCpq78eJbMH6KGpCsF93ymLInL2w="
+          "ik": "41h8LL+0x6XTRrzNdT9YNjV01ydgGJuzMg6p7jR+UTU="
         },
-        "penalty": {
-          "inner": "AAAAAAAAAAAAAAAAAAAAAP5CWu5jH4oJAt4A0bcXWOM="
+        "unbondedAmount": {
+          "lo": "114988443321837866"
         },
-        "unbondingAmount": {
-          "lo": "770780859579777782"
+        "delegationAmount": {
+          "lo": "738542762774296829"
         },
-        "balanceBlinding": "tj5u+kokyvdJ+voQ9vlE7xynkDeEYFMwbV+dqAh8JAA=",
-        "proofBlindingR": "azSoQt/V7lYceQL3tkmJBCk/779lSgvPL1VCGG9tsAY=",
-        "proofBlindingS": "97EkAyM9e4/TP3TlpwW60fA5GfAmQPdXU/5L4L5ykBI=",
-        "unbondingStartHeight": "70975"
+        "fromEpoch": {
+          "index": "3739",
+          "startHeight": "3739"
+        }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "2841314202",
-    "chainId": "joswvrkohbpzjiukfzfikhelu-89430285379435867711",
+    "expiryHeight": "925431",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "779937915757833540"
+        "lo": "512676770414563002"
       }
     }
   }

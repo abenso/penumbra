@@ -1,66 +1,43 @@
 {
   "actions": [
     {
-      "undelegate": {
+      "undelegateClaim": {
         "validatorIdentity": {
-          "ik": "1edcSaV2YSnQlv4fYAk5qBsIeuxMDGgzctO2IOYZhP4="
+          "ik": "Vxwgz7QFUT+smsK3n/0j2edco5Hj8OG6iln4KQ2PjLw="
         },
-        "unbondedAmount": {
-          "lo": "652405107337655181"
+        "penalty": {
+          "inner": "AAAAAAAAAAAAAAAAAAAAAP7L+xW1c+qzZ6D5CWu5jH8="
         },
-        "delegationAmount": {
-          "lo": "423191983562764026"
+        "unbondingAmount": {
+          "lo": "974237990483847387"
         },
-        "fromEpoch": {
-          "index": "531",
-          "startHeight": "531"
-        }
+        "balanceBlinding": "Ph0WIGC16Nfu+6Zv9CwpCPzwlQo11iZqRoiJru4VyAM=",
+        "proofBlindingR": "gArnIcLteMbwVSdhiKZGpKNBEVlZDKj96iQu8H5MMwA=",
+        "proofBlindingS": "AKMjgO8Be+j9myRW0xwWR95/i0p/rFmxnFkkCESUAgI=",
+        "unbondingStartHeight": "21691"
       }
     },
     {
-      "positionOpen": {
-        "position": {
-          "phi": {
-            "component": {
-              "p": {
-                "lo": "405908343509531556"
-              },
-              "q": {
-                "lo": "286261227439288925"
-              }
-            },
-            "pair": {
-              "asset1": {
-                "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-              },
-              "asset2": {
-                "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-              }
-            }
-          },
-          "nonce": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-          "state": {
-            "state": "POSITION_STATE_ENUM_CLOSED"
-          },
-          "reserves": {
-            "r1": {
-              "lo": "24069323774632283"
-            },
-            "r2": {
-              "lo": "870580343836603525"
-            }
-          },
-          "closeOnFill": true
+      "delegate": {
+        "validatorIdentity": {
+          "ik": "mX4oWo7g7jsLxpHl1BT34E0NlbcMhn1E4yOM3JD3UgU="
+        },
+        "epochIndex": "347",
+        "unbondedAmount": {
+          "lo": "216246788080764151"
+        },
+        "delegationAmount": {
+          "lo": "414026984498379949"
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "8897284399",
-    "chainId": "ylobq-86104941540550730124",
+    "expiryHeight": "282691",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "667876737206031395"
+        "lo": "822452321427629155"
       }
     }
   }

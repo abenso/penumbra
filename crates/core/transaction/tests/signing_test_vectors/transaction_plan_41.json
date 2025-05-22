@@ -1,84 +1,65 @@
 {
   "actions": [
     {
-      "output": {
-        "value": {
-          "amount": {
-            "lo": "679189361135083381"
-          },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          }
+      "undelegateClaim": {
+        "validatorIdentity": {
+          "ik": "hMZUA+dp3YswN5y14I7gRQs+gkZPuoGMLC/iBsskD2Q="
         },
-        "destAddress": {
-          "inner": "DWTbSZUsW6oEokJ1qoMMtQoldD3fRPeZOe3GX5kTgZyKR+DCNCjSdzgtBsv4J/oiPLPrM5Xt9lEVAyTjiOE/DhkAmyOfwuLdyDNtWZjQ3dk="
+        "penalty": {
+          "inner": "AAAAAAAAAAAAAAAAAAAAAP+36Q/5ckdFOO801qFh5Pg="
         },
-        "rseed": "I2d9d89SDeTTXYZGzo01IJoJD9HpehCnaQljyxKHwBU=",
-        "valueBlinding": "NDurM1Tooq11nDtNhLYuiaGWLnwbZIHl3t+lCRbuawM=",
-        "proofBlindingR": "iLr6XrgQdHndYgL2uFhis/XhlFWQLH1nWuQYuRVIbwk=",
-        "proofBlindingS": "6Bh/qx5XOdtBJvy89M1F501yxcTzAz9JeQdBK25zKQ0="
+        "unbondingAmount": {
+          "lo": "677501408575507186"
+        },
+        "balanceBlinding": "CshGOGMbz9ikaC7kBo5rzw1T4kHDWP+hEbwWPNxUhAE=",
+        "proofBlindingR": "FMPRe2bliPzpufTWl3WThXMT7HuT1+I9znSryXprbAk=",
+        "proofBlindingS": "QhSFXCcMC0FEEdLMpbvU2JGBtFtbddk208yobo2bcgU=",
+        "unbondingStartHeight": "48847"
       }
     },
     {
-      "swap": {
-        "swapPlaintext": {
-          "tradingPair": {
-            "asset1": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+      "actionDutchAuctionSchedule": {
+        "description": {
+          "input": {
+            "amount": {
+              "lo": "262418314611776023"
             },
-            "asset2": {
+            "assetId": {
               "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
             }
           },
-          "delta1I": {
-            "lo": "679362630365607269"
+          "outputId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
           },
-          "delta2I": {
-            "lo": "282858944999713516"
+          "maxOutput": {
+            "lo": "466694093862597864"
           },
-          "claimFee": {
-            "amount": {}
+          "minOutput": {
+            "lo": "332958963868750013"
           },
-          "claimAddress": {
-            "inner": "NXCqPbIJ4f8mhZPKSSoINjAHswai9THUcJ1k4FuXO8t3nesinSYpBj4rVN/vTReoWqwQNWScMp8gI1rUh9qVJOJym34xcKjyonM5AQ6CbYk="
-          },
-          "rseed": "mfsgXiJLfOs7I3VRyaJBp1+K2qroEJh8ijvzqLPhW0w="
-        },
-        "feeBlinding": "m1KPyQPhl1BnDlNlK94NX4gesbWtBK/pOGrSMbzB8QM=",
-        "proofBlindingR": "sFXbVCY9A2IdYaIlJcDRL108RCr/QIcW+mcJZXi9Jwg=",
-        "proofBlindingS": "jje7gxeOOfDj4JzQ4pW4YBTklMvyGiL9g4SfH94emhE="
-      }
-    },
-    {
-      "validatorVote": {
-        "body": {
-          "proposal": "223263340",
-          "vote": {
-            "vote": "VOTE_YES"
-          },
-          "identityKey": {
-            "ik": "puggZFMk05lx/nedIwm8XboHzxE3a/ajvltsI7x4uMw="
-          },
-          "governanceKey": {
-            "gk": "lAcboYty5jZKJ8or0n7GDpNC2Np5Qoi/XBr3HbdrARA="
-          },
-          "reason": {
-            "reason": "UbScZiD8r5xvJoW7ifHiG7c2C01tST"
-          }
-        },
-        "authSig": {
-          "inner": "lgOfl0oEXTYSJ3nnMY+VGHnbaL081bNwSEuPd2ywSAA5xryPU5goiOhTwSulbssIx7k6zYNC7LlumwEllQgcAQ=="
+          "startHeight": "144111149",
+          "endHeight": "144111150",
+          "stepCount": "288157727",
+          "nonce": "niwG67/vHX1sL2MKjJIs4+EDkZpDFwsBoWR8qXFKF2o="
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "1466370514",
-    "chainId": "rjnrfxsvoqewymyy-680935684045949",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "357482991574979395"
+        "lo": "750378614322522044"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "tFnWKMF15Q02b831VpCuIvFFExcNW1pOJl5XKSt4xZ0rh6S+yZpi4PpuADWYTcT6yBMMGZPEcJzlufXcLg0YB0Q/IDMo5mmP9lfGEb26nB8="
+      },
+      "text": "2yd  Hv c  ssDY7 OW7 cgZwH 9e 2B5 1Yqst6UZg8veH5XswfgH884MHE71f9ma  x w wSW07W4 9zS 3  Wqlju1V s6mlpRV2q yyR5gzR G2g4CEy9c8I0eKJvbyF27Lptb3OBKLX2i8Dw lG0L6KTX9 OD1b j6Uy7 r7Fj7  G RKZ48 mAi5wR 7i1l769bHyeI 8lc56oAAC 6 zwNAvAR T 7AE59  AV Pd6JeHZP QLZ0NRW9I m5  nJPmH 6"
+    },
+    "key": "Xg5Lm76A6Y2M9tU6WWyEsVBdwz25pWRCQ/EN90Kpm+A="
   }
 }

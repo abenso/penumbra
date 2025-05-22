@@ -1,61 +1,75 @@
 {
   "actions": [
     {
-      "actionDutchAuctionWithdraw": {
-        "auctionId": {
-          "inner": "tYen9vdCq6ujbL216qi7ocFMD0wE07BgmY1WKDxSsZ0="
-        },
-        "seq": "618503155",
-        "reservesInput": {
-          "amount": {
-            "lo": "84852211894696562"
+      "spend": {
+        "note": {
+          "value": {
+            "amount": {
+              "lo": "520385706369573446"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
           },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          "rseed": "GMWWi+jdGq6aAdacymu2xuw+nsKikPH4L5Z22+Q7gsM=",
+          "address": {
+            "inner": "iQvJjjaYqkV45BmwKNpWcuYnwoDYsGFm9MQtU2a8zx/POyls1h6NdEoh918vtpcYPhhZXYp5AIU52PsTi0BdsJ22XMQtVMDncuXULV8gtS8="
           }
         },
-        "reservesOutput": {
-          "amount": {
-            "lo": "949839836777165243"
-          },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          }
-        }
+        "position": "38765629036186",
+        "randomizer": "hWP0r7Rn2uVq065FBWb80cbX3lUCqwPJNkJq88VbJwQ=",
+        "valueBlinding": "PeMCLINBBfTF8v9QMbQb1fJQmvOMYSY2wq7P87ugvwA=",
+        "proofBlindingR": "9zMPsOU02kgezxOoBKCGcoIp881UAct9r2DeMFKBHA4=",
+        "proofBlindingS": "P9Xbab7KKsh68zWuy9NOjpVGOTGkC1+TsxARgfG1Bwk="
       }
     },
     {
-      "proposalSubmit": {
-        "proposal": {
-          "title": "seefqmo-750448",
-          "description": "iuf-844",
-          "signaling": {}
+      "delegatorVote": {
+        "proposal": "421369907",
+        "startPosition": "83714",
+        "vote": {
+          "vote": "VOTE_ABSTAIN"
         },
-        "depositAmount": {
-          "lo": "774139197522646266"
-        }
-      }
-    },
-    {
-      "proposalSubmit": {
-        "proposal": {
-          "title": "sefijeqm-92688048104843706673977014363430",
-          "description": "cbpkaruv-593976592810878117828",
-          "signaling": {}
+        "stakedNote": {
+          "value": {
+            "amount": {
+              "lo": "271381521166698970"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          "rseed": "rikCd9PHvNtue14njJefereO6GW+ItDhXWbIj5VN/Cc=",
+          "address": {
+            "inner": "ruhTJP6L+CYrcMsv/w/9ekHxvxb9O409PrkgVBXuruWcsOagKBmQU+ddMNPGUMDfFM5ygCukImndJz5IKQV1VdCzj9sucXr2Yg7CdvoboxE="
+          }
         },
-        "depositAmount": {
-          "lo": "978143614202696154"
-        }
+        "stakedNotePosition": "29638",
+        "unbondedAmount": {
+          "lo": "414537261699271530"
+        },
+        "randomizer": "r6BEvwDSSU+UPyFPKPn+8Ax2RX0E8jCYv6lgvwvb5wE=",
+        "proofBlindingR": "Jc2Gez8W7RIdzMfOtBvUDcgVugU/1DvRuaP+UZvrOQY=",
+        "proofBlindingS": "hCllpfC0OueGGHpmlh8ipeHFN0K3krpqJ3dVX2OJGQQ="
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "7229120705",
-    "chainId": "etu-2",
+    "expiryHeight": "144086",
+    "chainId": "etfpuprttazl-94302806431825202521",
     "fee": {
       "amount": {
-        "lo": "859783043176233021"
+        "lo": "205066258255688962"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "COMfqytF5MGk4btmAeJoutrx6n+MkrwOs/Hs2ptFe4nFT0DXiX5OMUAKvX6Dul3bCc6owtHUNge20HLurrlw+DaksGWXWEbwagioWwyWhFQ="
+      },
+      "text": "9295r0Zk  r3SK vbre3aE6pARTRFGxYJ F I0m 4 4IFX7N XP qQfQW6gUBI5QCRi309 2  MZNa1fc0KB 8w 8HIuC  Xh FNv0wmY7RwT WKkb 35Dt nX7 78WqR eBrC  Uh56dE652gm6JD327Pup87pCnk q75LpEpV d0eVhRxx7eFGKVP   W 8bz1x17NO  sE91B Emn o9A nEFA  4 9 425IlsC4Lkm N n2r6sB gyB wt z15 NWXx  0kf U 8QJDR  9nxCmTzvf kUO CKp  Kw0   tx 29 XLy DcHUM vG9iRqkOI2a7x 5  iUhHN iCKY4HW8EzX37 Gweb 0KF J5058 UEZGnh  4 zGm7 BqVJOx8lr8W8oFSH"
+    },
+    "key": "TdKKZQblFUHJogDwMJsMKqUN6nZfCmXk67yWhC9Ojpk="
   }
 }

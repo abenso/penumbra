@@ -1,49 +1,27 @@
 {
   "actions": [
     {
-      "proposalDepositClaim": {
-        "proposal": "476535853",
-        "depositAmount": {
-          "lo": "457976547602208863"
+      "actionDutchAuctionWithdraw": {
+        "auctionId": {
+          "inner": "ZhkRVG7+rT0iuvsgDTaWIZ5si+xIxqr/AFyvUDf8lWs="
         },
-        "outcome": {
-          "passed": {}
-        }
-      }
-    },
-    {
-      "validatorDefinition": {
-        "validator": {
-          "identityKey": {
-            "ik": "zuyRIEJWVK2dpcaKirMbYupX6+YQDhsvcpgB7CFzfQk="
+        "seq": "148042724",
+        "reservesInput": {
+          "amount": {
+            "lo": "730145733987349179"
           },
-          "consensusKey": "pWNqTlOLYxW3n5Glqfe6eEi9WE6X42zWR60FT2SzFXs=",
-          "name": "test validator",
-          "enabled": true,
-          "governanceKey": {
-            "gk": "zuyRIEJWVK2dpcaKirMbYupX6+YQDhsvcpgB7CFzfQk="
+          "assetId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
           }
         },
-        "authSig": "MnQWxc65YUuZ296yuIBOPDygR2xLmejXKR0ekSgqkAv8m0ZJT/lcfWaXizFp59texkHm968PmAzZt+Sm7DB+Aw=="
-      }
-    },
-    {
-      "ics20Withdrawal": {
-        "amount": {
-          "lo": "794267246988967938"
-        },
-        "denom": {
-          "denom": "aS5Ku6V"
-        },
-        "destinationChainAddress": "penumbra1v6h62h953vntq5jp8lpfu424lwvgm7nzz2n7wjcdu67ku72t5f5lvcan8yfqxay0jhxwnuw6zn65avcrqdnkgklrjmmjrj239fq6xk58suawkah58p74l9t6drkwhfusf4at8e",
-        "returnAddress": {
-          "inner": "etUoNpY+qCM5uRT2wpef+fhvq0VUcT+v6xrSyufqmzQcMA/oeI2/YSe313vTHFt1o9jCuHLUcyni4zcsQ1tMA0BJZiyQ+FwH0iX9ceVr6jo="
-        },
-        "timeoutHeight": {
-          "revisionNumber": "11935217",
-          "revisionHeight": "840842800"
-        },
-        "sourceChannel": "channel-0"
+        "reservesOutput": {
+          "amount": {
+            "lo": "276681323766093152"
+          },
+          "assetId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        }
       }
     },
     {
@@ -52,10 +30,10 @@
           "phi": {
             "component": {
               "p": {
-                "lo": "293930272935182406"
+                "lo": "957566858351583790"
               },
               "q": {
-                "lo": "612882438959240485"
+                "lo": "244182072658331527"
               }
             },
             "pair": {
@@ -69,28 +47,62 @@
           },
           "nonce": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
           "state": {
-            "state": "POSITION_STATE_ENUM_CLOSED"
+            "state": "POSITION_STATE_ENUM_OPENED"
           },
           "reserves": {
             "r1": {
-              "lo": "299648845398725632"
+              "lo": "269146309953500687"
             },
             "r2": {
-              "lo": "576213583086569982"
+              "lo": "287072774699595118"
             }
           },
           "closeOnFill": true
         }
       }
+    },
+    {
+      "ics20Withdrawal": {
+        "amount": {
+          "lo": "386781996689942286"
+        },
+        "denom": {
+          "denom": "HiyrQZBJL4CSM43X"
+        },
+        "destinationChainAddress": "penumbra1zm7qj5efad4w02w56pftuz9khh74spzhrruvxfd4vf8fxa70707vfyqphsf37hp4ms3ryeaknrnugv7lsez8rd5g5x3lqqzj0e90vhlw8d4sg5f5xy574knad7n8m7f2eukfsl",
+        "returnAddress": {
+          "inner": "Dwt/ROiBRkXpDcrxqLHTX3lEg/0GcDekya0KEEwSsNxPo1G9c+prOjt/2K+HTph6Pl1PZCClPWa9AitslwSPrWQwcYlA78Mvv11+nzYQXxI="
+        },
+        "timeoutHeight": {
+          "revisionNumber": "509200398",
+          "revisionHeight": "54600418"
+        },
+        "sourceChannel": "channel-0"
+      }
+    },
+    {
+      "actionDutchAuctionEnd": {
+        "auctionId": {
+          "inner": "JrQZB1YV1U/cyXx6Rpvbv+XPwxCJZ1y3Z78bOGJe0yw="
+        }
+      }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "2820938358",
-    "chainId": "aipxuwczhmeahwkjvapclzewxn-30943551359469479819555740",
+    "chainId": "kcoufpahskdjked-18559266484522555",
     "fee": {
       "amount": {
-        "lo": "260292030400142383"
+        "lo": "79899606433692190"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "oEj8uUJaySPbrXjwgB2aBm4jp9WYdp1A4Vol7HpQkEePIShpORSYfatO5k1y4LP3ZoJwXUeMkiziL9hx7yV003yeeducUG8d/sgSmge6Ijk="
+      },
+      "text": "rD0JYa  J2 1B5 Y 68  0F "
+    },
+    "key": "IaDWICaoqlNxnfXGDkB2JHTUQJmktdgYnXY29J8M7t8="
   }
 }

@@ -1,48 +1,100 @@
 {
   "actions": [
     {
-      "actionDutchAuctionSchedule": {
-        "description": {
-          "input": {
-            "amount": {
-              "lo": "293740443171447943"
-            },
-            "assetId": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            }
-          },
-          "outputId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          },
-          "maxOutput": {
-            "lo": "367390465144112190"
-          },
-          "minOutput": {
-            "lo": "895001701703425288"
-          },
-          "startHeight": "421220788",
-          "endHeight": "421220789",
-          "stepCount": "240760373",
-          "nonce": "YoMhwD4DMN0rlquwsba/FosA36yEJJgDSEAkEU0aVjk="
+      "undelegate": {
+        "validatorIdentity": {
+          "ik": "18RrbEBt/8EkAR8gtoFDapAEl6YIsdiFL41dZIJ6fm8="
+        },
+        "unbondedAmount": {
+          "lo": "215930651797351745"
+        },
+        "delegationAmount": {
+          "lo": "495221973459262481"
+        },
+        "fromEpoch": {
+          "index": "7224",
+          "startHeight": "7224"
         }
       }
     },
     {
-      "ibcRelayAction": {
-        "rawAction": {
-          "typeUrl": "/ibc.core.channel.v1.MsgRecvPacket",
-          "value": "CrMBCNKNyZcHEgtkZWZhdWx0UG9ydBoJY2hhbm5lbC0wIgtkZWZhdWx0UG9ydCoJY2hhbm5lbC0wMmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOgsI7pyBhgEQ+v6pHUC4zeCtwru2iBgSAgoAGgsI7pyBhgEQ+v6pHSKPAXBlbnVtYnJhMTVjd3o4cnByd3FyNXFkZmd2bHE5djBoaGN2cDg4Z2tldHc3cWdxMno4ZjI5YWRrZGtxM2ZwbW5kaDBsdnVmamx1OGd1ZXZsdGQyMms2bXFqamZremcyNnBldXhocWs0enNxOHo2M2F5cGY1Zm51MnZrcXFwdW1mcXV4aHl3dzZxOHZ6ZGxt"
+      "actionDutchAuctionWithdraw": {
+        "auctionId": {
+          "inner": "FYCIdDY9h6wIvAGlko+1SgLQ5yrrbSl5KVwPm3SEFVs="
+        },
+        "seq": "534931845",
+        "reservesInput": {
+          "amount": {
+            "lo": "136239271879982668"
+          },
+          "assetId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        },
+        "reservesOutput": {
+          "amount": {
+            "lo": "176750571482816060"
+          },
+          "assetId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        }
+      }
+    },
+    {
+      "actionDutchAuctionWithdraw": {
+        "auctionId": {
+          "inner": "WgWQfi+woo39OHkYQkJyzo2SYd6pxn6ewCfVhcWd5Pc="
+        },
+        "seq": "50796271",
+        "reservesInput": {
+          "amount": {
+            "lo": "640171550906752002"
+          },
+          "assetId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        },
+        "reservesOutput": {
+          "amount": {
+            "lo": "316594179059788134"
+          },
+          "assetId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        }
+      }
+    },
+    {
+      "delegate": {
+        "validatorIdentity": {
+          "ik": "R5+VAlb/F/KIEm/u9HQW3I/CzxvcmU26fueQ7KKCGg8="
+        },
+        "epochIndex": "2568",
+        "unbondedAmount": {
+          "lo": "661396873894462430"
+        },
+        "delegationAmount": {
+          "lo": "442793842442394995"
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "4478900183",
-    "chainId": "vjrjfbkwtyhxhnhuawipa-8364355",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "699606179851092898"
+        "lo": "712298168158918002"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "klGb6pIiSBv0Lprx3qFANkzSMJcgS4xElf1Tab8qs1BzLCey3nlfy3yJA0uw5rxxzZvERHx5XaMl4sLnHyQ5w2RVIXER8C2ZZfDHcnWjGBs="
+      },
+      "text": "g"
+    },
+    "key": "r3+p5Kws3T2HxFmYCNxiQa5WuJ+2GqKBN7BpZamaric="
   }
 }

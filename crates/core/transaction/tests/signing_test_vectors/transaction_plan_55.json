@@ -1,50 +1,83 @@
 {
   "actions": [
     {
-      "delegate": {
-        "validatorIdentity": {
-          "ik": "cmV/TCl1pfJNLOJ8zFYfiwIpu0LkIi52+r8oRFLyz/I="
+      "positionWithdraw": {
+        "reserves": {
+          "r1": {
+            "lo": "847192692184076695"
+          },
+          "r2": {
+            "lo": "662707633201932221"
+          }
         },
-        "epochIndex": "5358",
-        "unbondedAmount": {
-          "lo": "459111846236517868"
+        "positionId": {
+          "inner": "l0U4rLfX5b/oTVzIkIJmD4MO4ofOo1AJnrcf4fCNgl8="
         },
-        "delegationAmount": {
-          "lo": "504051032224617802"
-        }
+        "pair": {
+          "asset1": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          },
+          "asset2": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        },
+        "sequence": "16402706166047544759",
+        "rewards": [
+          {
+            "amount": {
+              "lo": "317409014085865105"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          }
+        ]
       }
     },
     {
-      "undelegateClaim": {
-        "validatorIdentity": {
-          "ik": "c26bl/D2vX2R4k2o88IscUZF2GLTHHGX6NRZ2P8e4eQ="
-        },
-        "penalty": {
-          "inner": "AAAAAAAAAAAAAAAAAAAAAP5jH4oJAt4A0bcXWOIZZSw="
-        },
-        "unbondingAmount": {
-          "lo": "917176589983196170"
-        },
-        "balanceBlinding": "U87pkG/+hbjNS9DxQm2j42f+Crz73yTgOMeSzglWHAQ=",
-        "proofBlindingR": "QIgmQglvMIq5ldH8Mw9AnQKTEd5ZqcxIMdTyle0+xgg=",
-        "proofBlindingS": "Bxh9Tvc+2Sht5WskW2Hu6dqAtp8lVaCyCMD61WeR0wY=",
-        "unbondingStartHeight": "44449"
-      }
-    },
-    {
-      "actionDutchAuctionEnd": {
-        "auctionId": {
-          "inner": "9JGjGT2pwN6tEZMehZQ9alwI1WftrFoPyVOQwCpdocM="
+      "positionOpen": {
+        "position": {
+          "phi": {
+            "component": {
+              "p": {
+                "lo": "874365634620030772"
+              },
+              "q": {
+                "lo": "710918793594146488"
+              }
+            },
+            "pair": {
+              "asset1": {
+                "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+              },
+              "asset2": {
+                "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+              }
+            }
+          },
+          "nonce": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+          "state": {
+            "state": "POSITION_STATE_ENUM_OPENED"
+          },
+          "reserves": {
+            "r1": {
+              "lo": "898496356050028172"
+            },
+            "r2": {
+              "lo": "445151127012372652"
+            }
+          },
+          "closeOnFill": true
         }
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "5671128062",
-    "chainId": "iwqqhafynpaayhkjdhnco-17301706536110934296408",
+    "expiryHeight": "292218",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "481841763530573017"
+        "lo": "137695641048099644"
       }
     }
   }

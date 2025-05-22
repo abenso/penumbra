@@ -1,62 +1,37 @@
 {
   "actions": [
     {
-      "spend": {
-        "note": {
-          "value": {
-            "amount": {
-              "lo": "20141913172230423"
-            },
-            "assetId": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            }
-          },
-          "rseed": "pEOXZh76ne+feLiIMugx5PeD1MMDQIxY1wyG8ldgZIE=",
-          "address": {
-            "inner": "r7ae/+8Q9d3QdaAs66/GAAbYBo/Am59nYWeIBU7REchE3LYtFPa1EHW2Lo1KZcRWuXzO/cM54CLSFnv2iArQnxjrlJnTB4nGnuLdFtCY9vc="
-          }
-        },
-        "position": "44539500200028",
-        "randomizer": "8/qFVGNGIxnB1Lvzpzn9ivsAUJZdVBWtCncuiH0KaAQ=",
-        "valueBlinding": "eX4BUnEK0vQEdQq74WYQ1vrATJoMuVmDJ6lZ/ZdkKQA=",
-        "proofBlindingR": "Dhz6tB8g+I5DdnJPYZM2OYbS1Y5XLsdCv0zjYtk7MQI=",
-        "proofBlindingS": "JVA1mcFNJ/v71hMEbMPY1gW+YvPvINKJv/5TmH0+gAI="
+      "positionClose": {
+        "positionId": {
+          "inner": "7VIhrxJKhFzenxCPZSAgc3GKHivI27dkEjRXeqjVpJU="
+        }
       }
     },
     {
-      "actionDutchAuctionSchedule": {
-        "description": {
-          "input": {
-            "amount": {
-              "lo": "983823195255907933"
-            },
-            "assetId": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            }
+      "output": {
+        "value": {
+          "amount": {
+            "lo": "899289792296874411"
           },
-          "outputId": {
+          "assetId": {
             "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          },
-          "maxOutput": {
-            "lo": "91704407083692831"
-          },
-          "minOutput": {
-            "lo": "679530614988797323"
-          },
-          "startHeight": "614121943",
-          "endHeight": "614121944",
-          "stepCount": "401943825",
-          "nonce": "CMPMEUQCAv5g9A6hkXs9Jp3Yk5kLoWfanqLKmjR8Bk4="
-        }
+          }
+        },
+        "destAddress": {
+          "inner": "JtkExs67mKCeiZEmytUxkQnV8mmzm0jhp94dWvS29BOXxyG/6+JWnhqT0+H8RKOx2kp1gKM1ipurAF+Cs9hZS0EvWWnORmbCDBMZp/oGy48="
+        },
+        "rseed": "/yH1f5rq+HuF/BIM+1w05HU66u+z8aPecmb4+kslelw=",
+        "valueBlinding": "wk2FatCWPtXHNbyD/e5xmNXeiu6uc30At/6eV9F4TwI=",
+        "proofBlindingR": "zjol7WjQEjWB4D6BACgqEeip0QKn7tJ7kaYUkPlaMAY=",
+        "proofBlindingS": "p/DXLZmHv1ICdfTvsI2wC9GG8XmD69KEDnjmdRisrw8="
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "7944813638",
-    "chainId": "nznlajsu-65153921",
+    "chainId": "zb-3504547544708958",
     "fee": {
       "amount": {
-        "lo": "702800535852104815"
+        "lo": "665461454852983639"
       }
     }
   }

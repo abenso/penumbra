@@ -1,103 +1,73 @@
 {
   "actions": [
     {
-      "actionDutchAuctionWithdraw": {
-        "auctionId": {
-          "inner": "zBhm7pQ0uFiWqb6jJEk2K3YoEH4eGxjPLZQQe0712oo="
-        },
-        "seq": "149584489",
-        "reservesInput": {
-          "amount": {
-            "lo": "612856394714058480"
+      "positionWithdraw": {
+        "reserves": {
+          "r1": {
+            "lo": "715632852762204871"
           },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          "r2": {
+            "lo": "87582582755494738"
           }
         },
-        "reservesOutput": {
-          "amount": {
-            "lo": "339022777773699228"
+        "positionId": {
+          "inner": "v3Y3ng/UBsrumuoCqVsjgAT0ToFS/x2HMbIQb2hKanU="
+        },
+        "pair": {
+          "asset1": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
           },
-          "assetId": {
+          "asset2": {
             "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
           }
-        }
-      }
-    },
-    {
-      "communityPoolSpend": {
-        "value": {
-          "amount": {
-            "lo": "351595669417895916"
-          },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          }
-        }
-      }
-    },
-    {
-      "actionDutchAuctionSchedule": {
-        "description": {
-          "input": {
+        },
+        "sequence": "6581420631924516227",
+        "rewards": [
+          {
             "amount": {
-              "lo": "309828377653594891"
+              "lo": "301274780613565854"
             },
             "assetId": {
               "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
             }
-          },
-          "outputId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          },
-          "maxOutput": {
-            "lo": "390228703465621780"
-          },
-          "minOutput": {
-            "lo": "651365431407079447"
-          },
-          "startHeight": "662339689",
-          "endHeight": "662339690",
-          "stepCount": "315826129",
-          "nonce": "S79WY6Fj4JaqBfyDOnOwSEAeFJZBTMDRv2AeG86pxTI="
-        }
+          }
+        ]
       }
     },
     {
-      "actionDutchAuctionSchedule": {
-        "description": {
-          "input": {
-            "amount": {
-              "lo": "452785782329070595"
-            },
-            "assetId": {
-              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-            }
-          },
-          "outputId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          },
-          "maxOutput": {
-            "lo": "163964745988808515"
-          },
-          "minOutput": {
-            "lo": "623129795657028252"
-          },
-          "startHeight": "972938697",
-          "endHeight": "972938698",
-          "stepCount": "176531286",
-          "nonce": "MpebDH9w/+eoE6w3DudL6pJ/DRq5+wfIrf+JAx02F8k="
-        }
+      "undelegateClaim": {
+        "validatorIdentity": {
+          "ik": "FTQlk/mP/VbAV6HfTw5sA1rmAQFnssA7VZQG7ItpHPI="
+        },
+        "penalty": {
+          "inner": "AAAAAAAAAAAAAAAAAAAAAP3Zf2K2rn1WbPQfIS13MZA="
+        },
+        "unbondingAmount": {
+          "lo": "805489006206756906"
+        },
+        "balanceBlinding": "1fvt2YYYzAnz8nMQCHYzjhA+Q2iqNkyo9Wbg0ywbEwM=",
+        "proofBlindingR": "e/ieGXaJ5/xO6Hw52ioueEF9CSebcj2vRQm1vzPXfBA=",
+        "proofBlindingS": "JYGJmk3Vq+2iaGESybSpE1TiPiosrgNPNa6k4/Vo8Ac=",
+        "unbondingStartHeight": "60546"
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "757613912",
-    "chainId": "rfrzthlsymgvdwzljifqrzdmqdwswuav-5547860931280149093682979663518",
+    "expiryHeight": "508175",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "787800690573283741"
+        "lo": "79110476126328317"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "J9zyrp/5K5azeNhOxCmkFBghDZ9XsACydP9S8xoUKKbD/DoH1vJHJ83FU1Y6annNN9m9xchTvdHNe4RIHaTH2jsXGr4+xiSigV9SFFx/Yd4="
+      },
+      "text": " 2O26bm8Xk21dc ikP gjE VCgzs mTH UX 3I lQ K  RzjorfGaogNIe o u97 pyv  "
+    },
+    "key": "t7j+qorag7qdQuF9gOdgK7zQmqE7h18cYW/vh5jUk9A="
   }
 }

@@ -1,44 +1,17 @@
 {
   "actions": [
     {
-      "communityPoolOutput": {
-        "value": {
-          "amount": {
-            "lo": "841433255504353733"
-          },
-          "assetId": {
-            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
-          }
-        },
-        "address": {
-          "inner": "waUs/UYwv/hsAsQLifKDqgKE1Z/NfXoM0v/zrAYg77z2uHDqM28JDuYwSbBEEDdUJD6wiWuPpv7n5jkXEdrbc9nWQwVxWCG37IRrUnIawbc="
-        }
-      }
-    },
-    {
-      "proposalSubmit": {
-        "proposal": {
-          "title": "tzghwlmstdvdsm-945549054283516287874154",
-          "description": "czoootkzeynfznsrdbqwkccps-4759530430344035191885",
-          "signaling": {}
-        },
-        "depositAmount": {
-          "lo": "685651008831161278"
-        }
-      }
-    },
-    {
       "positionWithdraw": {
         "reserves": {
           "r1": {
-            "lo": "580050595495280666"
+            "lo": "403687050125853218"
           },
           "r2": {
-            "lo": "881206186437646783"
+            "lo": "338710742525693426"
           }
         },
         "positionId": {
-          "inner": "vnq33IGSwoxgPf8f7mbPawvuCf5nWEQYGCfwrt6Gpsw="
+          "inner": "iiEGW3iQlwV0p1yW0ZBzINlMfgwA1xx6KrTLFXlxqNU="
         },
         "pair": {
           "asset1": {
@@ -48,17 +21,95 @@
             "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
           }
         },
-        "sequence": "1"
+        "sequence": "14155152973779719327",
+        "rewards": [
+          {
+            "amount": {
+              "lo": "43512856525942595"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          {
+            "amount": {
+              "lo": "992153554692226450"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          },
+          {
+            "amount": {
+              "lo": "533587483921786190"
+            },
+            "assetId": {
+              "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+            }
+          }
+        ]
+      }
+    },
+    {
+      "output": {
+        "value": {
+          "amount": {
+            "lo": "359742470600807182"
+          },
+          "assetId": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        },
+        "destAddress": {
+          "inner": "yib37jEwzxRMTtdWcC8t3d8RvKWKimN2kLFVq5Wq3Q7EgUcI5MipFBvkMjVyEaUexsACPMO3aBHSE1J+S5UzURs2m9HlFIudE/1G9Wjjph0="
+        },
+        "rseed": "tg5R3/KCvl0ufaJb4Uae4pjS8hwppjGn1so7ulssRt8=",
+        "valueBlinding": "sm4/L5gBZp9Ok0EpaKuh7TfdA8KyZaiV7tVI5Qh3wwI=",
+        "proofBlindingR": "7exB0q5x4GwYqKH8sWnriebVEFDRhJ4wI4VHEsYO3wg=",
+        "proofBlindingS": "RkStoapZqtN7kA8AwdYKdMQEYx+X0Elf5Nltu8PdkBA="
+      }
+    },
+    {
+      "positionWithdraw": {
+        "reserves": {
+          "r1": {
+            "lo": "811868781479680855"
+          },
+          "r2": {
+            "lo": "772320294039288115"
+          }
+        },
+        "positionId": {
+          "inner": "8pMfbF2x00I+1X7KypZl+eQt9hUVQcyPCKiTF9c5UIM="
+        },
+        "pair": {
+          "asset1": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          },
+          "asset2": {
+            "inner": "KeqcLzNx9qSH5+lcJHBB9KNW+YPrBk5dKzvPMiypahA="
+          }
+        },
+        "sequence": "13631223270368205867"
       }
     }
   ],
   "transactionParameters": {
-    "expiryHeight": "5578173011",
-    "chainId": "agcluxlgrbgatyeqgtfbfphvplgk-7462389386317254",
+    "expiryHeight": "376730",
+    "chainId": "penumbra-1",
     "fee": {
       "amount": {
-        "lo": "708175036828087322"
+        "lo": "699406290474094146"
       }
     }
+  },
+  "memo": {
+    "plaintext": {
+      "returnAddress": {
+        "inner": "tlVWCoXwaxhzk4+T58y+SCqdOxHURKCX4mL4BKS7V6cWVA+xeZMMbHOHVdnu3jT0djbtqlzbPtdps2KsYzxG665JK/F1HF3tomIbb2vEVOA="
+      },
+      "text": "2AvIe 34We73IeKE jsS 9c 8 nwkYt 4 J25EnC   24yAgV1E 0"
+    },
+    "key": "cI8v2FHu3FDOwypswrsE9T3CN0iaeY6LOPVOu6ZP8QI="
   }
 }
